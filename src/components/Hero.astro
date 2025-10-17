@@ -1,0 +1,47 @@
+---
+const WHATSAPP = 'https://wa.me/5491133544047?text=Hola%20!%20Quiero%20hacer%20un%20pedido%20de%20prepizzas%20🙂';
+import Carrousel from './Carrousel.jsx';
+---
+
+<section
+  id="inicio"
+  class="relative overflow-hidden bg-bg"
+>
+  <!-- 1 Textura de fondo -->
+  <div
+    class="absolute inset-0 z-[1] bg-[url('/texture-1.jpg')] bg-cover bg-center opacity-15"
+  ></div>
+
+  <!-- 2 Overlays difuminados -->
+  <!-- Fade superior -->
+  <div class="pointer-events-none absolute top-0 left-0 right-0 h-20 z-[2]
+              bg-gradient-to-b from-bg to-transparent"></div>
+  <!-- Fade inferior -->
+  <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-24 z-[2]
+              bg-gradient-to-t from-bg to-transparent"></div>
+
+  <!-- 3 Contenido -->
+  <div class="container relative z-[3] grid grid-cols-1 md:grid-cols-2 gap-10 items-center py-12 md:py-20">
+    <!-- Columna izquierda -->
+    <div class="flex flex-col gap-6 text-center md:text-left">
+      <h1 class="font-serif text-primary text-4xl md:text-5xl leading-tight">
+        Prepizzas Caseras listas para tu horno
+      </h1>
+      <p class="text-muted font-sans text-lg max-w-lg mx-auto md:mx-0">
+        Tamaño grande, pizzetas e individuales.<br/>
+        ¡Aptas freezer y listas para horno o parrilla!
+      </p>
+      <div class="flex flex-wrap justify-center md:justify-start gap-3">
+        <a href={WHATSAPP} target="_blank" rel="noopener" class="btn">Pedir por WhatsApp</a>
+        <a href="#sabores" class="btn bg-accent text-white hover:opacity-90">Ver opciones</a>
+      </div>
+    </div>
+
+    <!-- Columna derecha: carrusel -->
+    <div class="flex justify-center md:justify-end">
+      <Carrousel client:load />
+    </div>
+  </div>
+</section>
+
+

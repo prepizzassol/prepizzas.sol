@@ -1,0 +1,71 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Playfair+Display:ital,wght@0,400..800;1,400..800&family=Delius+Swash+Caps&display=swap');
+
+/* 🎨 Paleta + Fuentes personalizadas */
+@theme {
+  /* Colores */
+  --color-bg: #FAEDD3;
+  --color-primary: #6B1B3C;
+  --color-accent: #7D2A4F;
+  --color-price: #8A4B20;
+  --color-text: #1C1C1C;
+  --color-muted: #6A6A6A;
+
+  /* Fuentes */
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-hand: "Delius Swash Caps", cursive;
+}
+
+/* Exponer variables CSS globalmente */
+:root {
+  --color-bg: #FAEDD3;
+  --color-primary: #6B1B3C;
+  --color-accent: #7D2A4F;
+  --color-price: #8A4B20;
+  --color-text: #1C1C1C;
+  --color-muted: #6A6A6A;
+  --font-hand: "Delius Swash Caps", cursive;
+}
+
+/* 🧱 Base global */
+html, body {
+  @apply bg-bg text-text font-sans antialiased;
+}
+
+/* ✨ Jerarquía tipográfica */
+h1, h2, h3, .section-title {
+  @apply font-serif text-primary tracking-tight;
+}
+
+h1 { @apply text-4xl md:text-5xl font-bold; }
+h2 { @apply text-2xl md:text-3xl font-semibold; }
+h3 { @apply text-xl md:text-2xl font-semibold; }
+
+.badge, .hand, .script {
+  @apply font-hand text-accent;
+}
+
+/* 📦 Componentes reutilizables */
+.container {
+  @apply max-w-[1100px] mx-auto px-6;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-full px-4 py-2 font-semibold text-white bg-primary hover:opacity-90 transition;
+}
+
+.badge {
+  @apply inline-flex items-center rounded-full px-3 py-1 text-white bg-accent text-sm;
+}
+
+.swiper-pagination-bullet {
+  background: var(--color-primary);
+  opacity: 0.5;
+  transition: all 0.2s ease;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: var(--color-accent);
+}

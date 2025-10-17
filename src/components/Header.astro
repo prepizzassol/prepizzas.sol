@@ -1,0 +1,96 @@
+---
+const WHATSAPP = 'https://wa.me/5491133544047?text=Hola%20!%20Quiero%20hacer%20un%20pedido%20de%20prepizzas%20🙂';
+---
+
+<header class="sticky top-0 z-50 bg-bg/80 backdrop-blur border-b border-black/5">
+  <div class="container flex items-center justify-between h-16">
+    <!-- Marca -->
+    <a href="/" class="badge flex items-center gap-2 font-script text-xl text-primary font-bold">
+      Prepizzas.SoL
+    </a>
+
+    <!-- Menú Desktop -->
+    <nav class="hidden md:flex items-center gap-8 font-sans text-[0.95rem] font-medium">
+      <a href="#inicio" class="hover:text-primary transition-colors">Inicio</a>
+      <a href="#sabores" class="hover:text-primary transition-colors">Sabores</a>
+      <a href="#contacto" class="hover:text-primary transition-colors">Contacto</a>
+      <a class="btn" href={WHATSAPP} target="_blank" rel="noopener noreferrer">Hacer pedido</a>
+    </nav>
+
+    <!-- Botón Hamburguesa -->
+    <button 
+      id="menuBtn" 
+      class="md:hidden flex flex-col justify-center gap-1.5 w-10 h-10 rounded-lg hover:bg-black/5 transition-colors" 
+      aria-label="Abrir menú"
+      aria-expanded="false"
+    >
+      <span class="hamburger-line w-6 h-0.5 bg-text rounded transition-all duration-300"></span>
+      <span class="hamburger-line w-6 h-0.5 bg-text rounded transition-all duration-300"></span>
+      <span class="hamburger-line w-6 h-0.5 bg-text rounded transition-all duration-300"></span>
+    </button>
+  </div>
+</header>
+
+<!-- Menú móvil fuera del header sticky -->
+<nav 
+  id="mobileMenu" 
+  class="md:hidden fixed top-16 left-0 right-0 z-40 flex-col items-start gap-4 px-6 pb-6 bg-bg/95 backdrop-blur border-b border-black/5 overflow-hidden transition-all duration-300 max-h-0 opacity-0"
+>
+  <a href="#inicio" class="py-2 w-full hover:text-primary transition-colors font-sans text-2xl font-bold text-center">Inicio</a>
+  <a href="#sabores" class="py-2 w-full hover:text-primary transition-colors font-sans text-2xl font-bold text-center">Sabores</a>
+  <a href="#contacto" class="py-2 w-full hover:text-primary transition-colors font-sans text-2xl font-bold text-center">Contacto</a>
+  <a class="btn w-full justify-center" href={WHATSAPP} target="_blank" rel="noopener noreferrer">Hacer pedido</a>
+</nav>
+
+<style>
+  /* Animación del botón hamburguesa */
+  #menuBtn[aria-expanded="true"] .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  #menuBtn[aria-expanded="true"] .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  #menuBtn[aria-expanded="true"] .hamburger-line:nth-child(3) {
+    transform: rotate(-46deg) translate(7px,-6px);
+  }
+
+  /* Menú móvil abierto */
+  #mobileMenu.open {
+    max-height: 400px;
+    opacity: 1;
+    display: flex;
+  }
+</style>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  
+  if (menuBtn && mobileMenu) {
+    // Toggle menú
+    menuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.contains('open');
+      mobileMenu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    // Cerrar al hacer click en un link
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target instanceof HTMLAnchorElement && e.target.hash) {
+        mobileMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Cerrar al hacer scroll
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.scrollY;
+      if (Math.abs(currentScroll - lastScroll) > 50 && mobileMenu.classList.contains('open')) {
+        mobileMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+      lastScroll = currentScroll;
+    });
+  }
+</script>

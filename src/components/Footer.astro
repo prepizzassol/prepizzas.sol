@@ -1,0 +1,46 @@
+---
+const {
+  instagram = 'https://www.instagram.com/prepizzas.sol/',
+  whatsapp = 'https://wa.me/5491133544047?text=Hola%20!%20Quiero%20hacer%20un%20pedido%20de%20prepizzas%20🙂',
+  email = 'mailto:prepizzas.sol@gmail.com',
+  year = new Date().getFullYear(),
+} = Astro.props;
+---
+
+<footer class="relative overflow-hidden bg-bg border-t border-black/10 mt-10">
+  <!-- textura + blur -->
+  <div class="absolute inset-0 backdrop-blur-[2px] z-[2]"></div>
+
+  <div class="relative z-[3] container py-10 flex flex-col md:flex-row justify-between items-center gap-5 text-center md:text-left">
+    <!-- Logo + frase -->
+    <div class="flex flex-col gap-2">
+      <h3 class="font-hand text-2xl badge justify-center">Prepizzas.SoL</h3>
+      <p class="text-sm text-muted">Hechas con amor desde Villa Adelina 🍕</p>
+    </div>
+
+    <!-- Links -->
+    <nav class="flex flex-wrap justify-center gap-4">
+      <a href="#inicio" class="text-sm hover:text-primary transition-colors font-sans">Inicio</a>
+      <a href="#sabores" class="text-sm hover:text-primary transition-colors font-sans">Sabores</a>
+      <a href="#galeria" class="text-sm hover:text-primary transition-colors font-sans">Galería</a>
+      <a href="#contacto" class="text-sm hover:text-primary transition-colors font-sans">Contacto</a>
+    </nav>
+
+    <!-- Redes -->
+    <div class="flex gap-4 items-center justify-center">
+      <a href={instagram} target="_blank" rel="noopener" aria-label="Instagram" class="hover:scale-110 transition-transform">
+        <img src="/icons/instagram.svg" alt="Instagram" class="w-6 h-6 opacity-80 hover:opacity-100" />
+      </a>
+      <a href={whatsapp} target="_blank" rel="noopener" aria-label="WhatsApp" class="hover:scale-110 transition-transform">
+        <img src="/icons/whatsapp.svg" alt="WhatsApp" class="w-6 h-6 opacity-80 hover:opacity-100" />
+      </a>
+      <a href={email} aria-label="Correo" class="hover:scale-110 transition-transform">
+        <img src="/icons/mail.svg" alt="Correo" class="w-6 h-6 opacity-80 hover:opacity-100" />
+      </a>
+    </div>
+  </div>
+
+  <div class="relative z-[3] border-t border-black/10 py-3 text-center text-xs text-muted/70">
+    © {year} Prepizzas.SoL — Todos los derechos reservados.
+  </div>
+</footer>

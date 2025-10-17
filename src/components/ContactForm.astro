@@ -1,0 +1,198 @@
+---
+const {
+  title = 'Hacé tu pedido',
+  copy = 'Contanos qué opción te gusta y coordinamos por WhatsApp.',
+  web3formsKey = 'a33e18e3-45d7-43d5-bc10-121df773418d',
+  whatsapp = 'https://wa.me/5491133544047?text=Hola%20!%20Quiero%20hacer%20un%20pedido%20de%20prepizzas%20🙂',
+} = Astro.props;
+---
+
+<section id="contacto" class="relative overflow-hidden bg-bg">
+  <!-- textura + fades -->
+  <div class="absolute inset-0 z-[1] bg-[url('/texture-1.jpg')] bg-repeat bg-cover opacity-10"></div>
+  <div class="pointer-events-none absolute top-0 left-0 right-0 h-16 z-[2] bg-gradient-to-b from-bg to-transparent"></div>
+  <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-20 z-[2] bg-gradient-to-t from-bg to-transparent"></div>
+
+  <div class="container relative z-[3] py-14 md:py-20 grid gap-10 md:grid-cols-2 items-start">
+    <!-- Texto -->
+    <div class="flex flex-col gap-4 text-center md:text-left">
+      <h2 class="font-serif text-primary text-3xl md:text-4xl">{title}</h2>
+      <p class="text-muted">{copy}</p>
+      <ul class="text-sm text-muted/90 list-disc pl-5 mt-2 space-y-1 text-left">
+        <li>Respondo a la brevedad por mail o WhatsApp.</li>
+        <li>Podés elegir <strong>Tomate</strong>, <strong>Cebolla</strong> o <strong>Mixta</strong>.</li>
+        <li>Envíos a zonas cercanas de Villa Adelina.</li>
+      </ul>
+      <a href={whatsapp} target="_blank" rel="noopener" class="btn mt-3 w-fit self-center md:self-start">Contactar por WhatsApp</a>
+    </div>
+
+    <!-- Formulario -->
+    <form
+      id="pedidoForm"
+      class="bg-white/90 rounded-2xl shadow-2xl p-5 md:p-6 space-y-4 backdrop-blur"
+      method="POST"
+      action="https://api.web3forms.com/submit"
+      novalidate
+    >
+      <!-- Web3Forms: campos ocultos -->
+      <input type="hidden" name="access_key" value={web3formsKey} />
+      <input type="hidden" name="subject" value="Nuevo pedido desde la landing Prepizzas.SoL" />
+      <input type="hidden" name="from_name" value="Prepizzas.SoL" />
+      <!-- si querés que te llegue el reply-to del usuario: -->
+      <!-- <input type="hidden" name="replyto" value="" /> -->
+
+      <!-- Honeypot anti-bot -->
+      <input type="text" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+
+      <!-- Nombre -->
+      <div>
+        <label for="nombre" class="block text-sm font-medium mb-1">Nombre*</label>
+        <input id="nombre" name="name" required placeholder="Tu nombre"
+          class="w-full rounded-xl border border-black/10 px-3 py-2 outline-none focus:ring-2 focus:ring-primary/30"
+        />
+        <p data-err-for="nombre" class="mt-1 text-sm text-[#b00020] hidden">Ingresá tu nombre.</p>
+      </div>
+
+      <!-- Teléfono / WhatsApp -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div>
+          <label for="telefono" class="block text-sm font-medium mb-1">Teléfono / WhatsApp*</label>
+          <input id="telefono" name="phone" required inputmode="tel" placeholder="11 1234 5678"
+            class="w-full rounded-xl border border-black/10 px-3 py-2 outline-none focus:ring-2 focus:ring-primary/30"
+          />
+          <p data-err-for="telefono" class="mt-1 text-sm text-[#b00020] hidden">Ingresá un teléfono válido.</p>
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium mb-1">Email</label>
+          <input id="email" type="email" name="email" placeholder="tu@email.com"
+            class="w-full rounded-xl border border-black/10 px-3 py-2 outline-none focus:ring-2 focus:ring-primary/30"
+          />
+        </div>
+      </div>
+
+      <!-- Opciones -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div>
+          <label class="block text-sm font-medium mb-1" for="sabor">Sabor*</label>
+          <select id="sabor" name="sabor" required
+            class="w-full rounded-xl border border-black/10 px-0.5 py-2 outline-none bg-white focus:ring-2 focus:ring-primary/30">
+            <option value="">Elegí una opción</option>
+            <option>Tomate</option>
+            <option>Cebolla</option>
+            <option>Mixta</option>
+            <option>Tomate Grande</option>
+            <option>Cebolla Grande</option>
+            <option>Mixta Grande</option>
+            <option>Pizzeta</option>
+          </select>
+          <p data-err-for="sabor" class="mt-1 text-sm text-[#b00020] hidden">Elegí un sabor.</p>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="cantidad">Cantidad*</label>
+          <input id="cantidad" name="cantidad" type="number" min="1" required placeholder="1"
+            class="w-full rounded-xl border border-black/10 px-3 py-2 outline-none focus:ring-2 focus:ring-primary/30" />
+          <p data-err-for="cantidad" class="mt-1 text-sm text-[#b00020] hidden">Indicá la cantidad.</p>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Entrega</label>
+          <div class="flex gap-3 items-center">
+            <label class="inline-flex items-center gap-2">
+              <input type="radio" name="entrega" value="Retiro" class="accent-primary" checked />
+              <span>Retiro</span>
+            </label>
+            <label class="inline-flex items-center gap-2">
+              <input type="radio" name="entrega" value="Envío" class="accent-primary" />
+              <span>Envío</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mensaje -->
+      <div>
+        <label for="mensaje" class="block text-sm font-medium mb-1">Mensaje</label>
+        <textarea id="mensaje" name="message" rows="4" placeholder="Ej: Para el viernes por la noche, si puede ser 2 mixtas."
+          class="w-full rounded-xl border border-black/10 px-3 py-2 outline-none focus:ring-2 focus:ring-primary/30"></textarea>
+      </div>
+
+      <!-- Estado -->
+      <div class="text-sm">
+        <span id="formState" class="text-muted" aria-live="polite"></span>
+      </div>
+
+      <!-- Acciones -->
+      <div class="flex items-center gap-3">
+        <button
+          id="submitBtn"
+          type="submit"
+          class="btn"
+        >Enviar pedido</button>
+        <a href={whatsapp} target="_blank" rel="noopener" class="btn bg-accent text-white hover:opacity-90">WhatsApp</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Script: validación + envío fetch a Web3Forms + feedback -->
+  <script is:inline>
+    const form = document.getElementById('pedidoForm');
+    const state = document.getElementById('formState');
+    const submitBtn = document.getElementById('submitBtn');
+
+    const showError = (id) => {
+      const p = document.querySelector(`[data-err-for="${id}"]`);
+      p?.classList.remove('hidden');
+    };
+    const clearErrors = () => {
+      document.querySelectorAll('[data-err-for]').forEach(el => el.classList.add('hidden'));
+    };
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearErrors();
+
+      // Validación mínima
+      const nombre = /** @type {HTMLInputElement} */(document.getElementById('nombre'));
+      const tel = /** @type {HTMLInputElement} */(document.getElementById('telefono'));
+      const sabor = /** @type {HTMLSelectElement} */(document.getElementById('sabor'));
+      const cant = /** @type {HTMLInputElement} */(document.getElementById('cantidad'));
+
+      let ok = true;
+      if (!nombre.value.trim()) { showError('nombre'); ok = false; }
+      if (!tel.value.trim())    { showError('telefono'); ok = false; }
+      if (!sabor.value.trim())  { showError('sabor'); ok = false; }
+      if (!cant.value.trim() || Number(cant.value) < 1) { showError('cantidad'); ok = false; }
+
+      if (!ok) {
+        state.textContent = 'Revisá los campos marcados.';
+        return;
+      }
+
+      // Preparar payload para Web3Forms
+      const data = new FormData(form);
+
+      // UX: deshabilitar mientras envía
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+      state.textContent = 'Enviando…';
+
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: data });
+        const json = await res.json();
+
+        if (json.success) {
+          state.textContent = '¡Listo! Te contactamos a la brevedad.';
+          form.reset();
+        } else {
+          state.textContent = 'No se pudo enviar. Probá de nuevo o escribime por WhatsApp.';
+          console.error('Web3Forms error:', json);
+        }
+      } catch (err) {
+        state.textContent = 'Ocurrió un error al enviar. Probá de nuevo más tarde.';
+        console.error(err);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+      }
+    });
+  </script>
+</section>
