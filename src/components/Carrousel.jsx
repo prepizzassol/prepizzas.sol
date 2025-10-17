@@ -7,17 +7,17 @@ import "swiper/css/effect-fade";
 export default function Carrousel() {
   const slides = [
     {
-      src: "/images/pizza-1.jpg",
+      src: "/images/pizza-1.webp",
       alt: "Prepizzas caseras",
       caption: "Listas para horno o parrilla 🔥",
     },
     {
-      src: "/images/pizza-2.jpg",
+      src: "/images/pizza-2.webp",
       alt: "Pizzetas listas",
       caption: "Aptas freezer ❄️",
     },
     {
-      src: "/images/pizza-3.jpg",
+      src: "/images/pizza-3.webp",
       alt: "Pizzas artesanales",
       caption: "Hacé tu pedido!",
     },

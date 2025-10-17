@@ -3,14 +3,14 @@ import { useEffect, useRef, useState } from "react";
 
 /** Reemplazá/extendé con tus imágenes reales en /public */
 const IMAGES = [
-  { src: "/images/pizza-1.jpg", alt: "Prepizzas caseras" },
-  { src: "/images/pizza-2.jpg", alt: "Pizzetas listas" },
-  { src: "/images/pizza-3.jpg", alt: "Prepizzas caseras" },
-  { src: "/images/cebolla.png", alt: "Pizzetas listas" },
-  { src: "/images/tomate.png", alt: "Cebolla estilo fugazza" },
-  { src: "/images/mixta.png", alt: "Mixta" },
-  { src: "/images/pizzeta.png", alt: "Individuales" },
-  { src: "/images/pizza-1.jpg", alt: "Al horno o parrilla" },
+  { src: "/images/cebolla.webp", alt: "Pizzetas listas" },
+  { src: "/images/tomate.webp", alt: "Cebolla estilo fugazza" },
+  { src: "/images/mixta.webp", alt: "Mixta" },
+  { src: "/images/pizzeta.webp", alt: "Individuales" },
+  { src: "/images/pizza-1.webp", alt: "Prepizzas caseras" },
+  { src: "/images/pizza-2.webp", alt: "Pizzetas listas" },
+  { src: "/images/pizza-3.webp", alt: "Prepizzas caseras" },
+  { src: "/images/pizza-1.webp", alt: "Al horno o parrilla" },
 ];
 
 export default function Gallery({ images = IMAGES, title = "Mirá las delicias de la casa" }) {
