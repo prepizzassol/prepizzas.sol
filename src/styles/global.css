@@ -69,3 +69,8 @@ h3 { @apply text-xl md:text-2xl font-semibold; }
   opacity: 1;
   background: var(--color-accent);
 }
+
+@keyframes wa-pop {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-2px) scale(1.05); }
+}
