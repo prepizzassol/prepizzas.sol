@@ -1,16 +1,15 @@
 // src/components/Gallery.jsx
 import { useEffect, useRef, useState } from "react";
 
-/** Imágenes originales (mantengo tu API) */
 const IMAGES = [
-  { src: "/images/cebolla.webp", alt: "Pizzetas listas" },
-  { src: "/images/tomate.webp",  alt: "Cebolla estilo fugazza" },
-  { src: "/images/mixta.webp",   alt: "Mixta" },
-  { src: "/images/pizzeta.webp", alt: "Individuales" },
-  { src: "/images/pizza-1.webp", alt: "Prepizzas caseras" },
-  { src: "/images/pizza-2.webp", alt: "Pizzetas listas" },
-  { src: "/images/pizza-3.webp", alt: "Prepizzas caseras" },
-  { src: "/images/pizza-1.webp", alt: "Al horno o parrilla" },
+  { src: "/images/pizzetta-cebolla-2.webp", alt: "Pizzetas listas" },
+  { src: "/images/prepizza-cebolla-2.webp",  alt: "Cebolla estilo fugazza" },
+  { src: "/images/mixta-2.webp",   alt: "Mixta" },
+  { src: "/images/prepizza-tomate-1.webp", alt: "Individuales" },
+  { src: "/images/tomate-individuales.webp", alt: "Prepizzas caseras" },
+  { src: "/images/mixta-3.webp", alt: "Prepizzas caseras" },
+  { src: "/images/pizzeta-tomate.webp", alt: "Pizzetas listas" },
+  { src: "/images/prepizzas-1", alt: "Al horno o parrilla" },
 ];
 
 /** Helpers para srcset/sizes */

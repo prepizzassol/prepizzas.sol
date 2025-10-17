@@ -6,9 +6,10 @@ import "swiper/css/effect-fade";
 
 export default function Carrousel() {
   const slides = [
-    { base: "pizza-1", alt: "Prepizzas caseras", caption: "Listas para horno o parrilla 🔥" },
-    { base: "pizza-2", alt: "Pizzetas listas", caption: "Aptas freezer ❄️" },
-    { base: "pizza-3", alt: "Pizzas artesanales", caption: "Hacé tu pedido!" },
+    { base: "prepizza-cebolla-1", alt: "Prepizzas caseras", caption: "Listas para horno o parrilla 🔥" },
+    { base: "prepizza-tomate-1", alt: "Prepizzas caseras", caption: "Hacé tu pedido!" },
+    { base: "pizzeta-cebolla-1", alt: "Pizzetas listas", caption: "Listas para horno o parrilla 🔥" },
+    { base: "mixta-1", alt: "Prepizzas caseras", caption: "Aptas freezer ❄️" },
   ];
 
   const sizes = "(max-width: 768px) 100vw, 1200px";
