@@ -101,7 +101,6 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
   return (
     <section id="galeria" className="relative overflow-hidden bg-bg">
       
-      <div className="absolute inset-0 z-[1] bg-[url('/texture-2.jpg')] bg-repeat bg-cover opacity-5" />
       <div className="pointer-events-none absolute top-0 left-0 right-0 h-20 z-[2] bg-gradient-to-b from-bg to-transparent" />
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 z-[2] bg-gradient-to-t from-bg to-transparent" />
 

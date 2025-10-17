@@ -7,6 +7,18 @@ import Carrousel from './Carrousel.jsx';
   id="inicio"
   class="relative overflow-hidden bg-bg"
 >
+
+
+<link
+    rel="preload"
+    as="image"
+    href="/images/pizza-1-1200.webp"
+    imagesrcset="/images/pizza-1-480.webp 480w, /images/pizza-1-768.webp 768w, /images/pizza-1-1200.webp 1200w"
+    imagesizes="(max-width: 768px) 100vw, 1200px"
+    fetchpriority="high"
+  />
+
+
   <!-- 1 Textura de fondo -->
   <div
     class="absolute inset-0 z-[1] bg-[url('/texture-1.webp')] bg-cover bg-center opacity-15"
