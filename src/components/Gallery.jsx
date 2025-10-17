@@ -1,11 +1,11 @@
 // src/components/Gallery.jsx
 import { useEffect, useRef, useState } from "react";
 
-/** Reemplazá/extendé con tus imágenes reales en /public */
+/** Imágenes originales (mantengo tu API) */
 const IMAGES = [
   { src: "/images/cebolla.webp", alt: "Pizzetas listas" },
-  { src: "/images/tomate.webp", alt: "Cebolla estilo fugazza" },
-  { src: "/images/mixta.webp", alt: "Mixta" },
+  { src: "/images/tomate.webp",  alt: "Cebolla estilo fugazza" },
+  { src: "/images/mixta.webp",   alt: "Mixta" },
   { src: "/images/pizzeta.webp", alt: "Individuales" },
   { src: "/images/pizza-1.webp", alt: "Prepizzas caseras" },
   { src: "/images/pizza-2.webp", alt: "Pizzetas listas" },
@@ -13,24 +13,31 @@ const IMAGES = [
   { src: "/images/pizza-1.webp", alt: "Al horno o parrilla" },
 ];
 
+/** Helpers para srcset/sizes */
+const makeBase = (path) => path.replace(/\.webp$/i, ""); // "/images/tomate"
+const thumbSizes = "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw";
+const viewSizes  = "90vw"; // lightbox ocupa ~90% del ancho
+
+const buildSets = (base) => ({
+  webp: `${base}-480.webp 480w, ${base}-768.webp 768w, ${base}-1200.webp 1200w`,
+  // Fallback razonable
+  fallback: `${base}-768.webp`,
+});
+
 export default function Gallery({ images = IMAGES, title = "Mirá las delicias de la casa" }) {
   const [open, setOpen] = useState(false);
   const [idx, setIdx] = useState(0);
 
-  // refs para swipe y para detectar click fuera
   const lightboxRef = useRef(null);
   const touchStart = useRef({ x: 0, y: 0, t: 0 });
   const touchDelta = useRef({ x: 0, y: 0 });
 
-  const openAt = (i) => {
-    setIdx(i);
-    setOpen(true);
-  };
+  const openAt = (i) => { setIdx(i); setOpen(true); };
   const close = () => setOpen(false);
-  const prev = () => setIdx((i) => (i - 1 + images.length) % images.length);
-  const next = () => setIdx((i) => (i + 1) % images.length);
+  const prev  = () => setIdx((i) => (i - 1 + images.length) % images.length);
+  const next  = () => setIdx((i) => (i + 1) % images.length);
 
-  // Teclado: Escape, ←, →
+  // Teclado
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => {
@@ -45,24 +52,20 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
   // Bloquear scroll del body cuando está abierto
   useEffect(() => {
     if (!open) return;
-    const prev = document.body.style.overflow;
+    const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
+    return () => { document.body.style.overflow = prevOverflow; };
   }, [open]);
 
-  // Cerrar al click/touch fuera (robusto, fase de captura)
+  // Cerrar al click/touch fuera
   useEffect(() => {
     if (!open) return;
-
     const handler = (e) => {
       const box = lightboxRef.current;
       if (!box) return;
       const target = e.target;
       if (!box.contains(target)) setOpen(false);
     };
-
     window.addEventListener("pointerdown", handler, true);
     window.addEventListener("click", handler, true);
     return () => {
@@ -79,28 +82,32 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
   };
   const onTouchMove = (e) => {
     const t = e.touches[0];
-    touchDelta.current = {
-      x: t.clientX - touchStart.current.x,
-      y: t.clientY - touchStart.current.y,
-    };
+    touchDelta.current = { x: t.clientX - touchStart.current.x, y: t.clientY - touchStart.current.y };
   };
   const onTouchEnd = () => {
     const { x, y } = touchDelta.current;
     const dt = Date.now() - touchStart.current.t;
-    const absX = Math.abs(x);
-    const absY = Math.abs(y);
-    const H_THRESHOLD = 50;  // desplazamiento mínimo horizontal
-    const V_LIMIT = 60;      // límite vertical para no confundir con scroll
-    const TIME_LIMIT = 600;  // swipe rápido (ms)
-    if (dt <= TIME_LIMIT && absX > H_THRESHOLD && absY < V_LIMIT) {
-      if (x < 0) next();
-      else prev();
-    }
+    const absX = Math.abs(x), absY = Math.abs(y);
+    if (dt <= 600 && absX > 50 && absY < 60) { x < 0 ? next() : prev(); }
   };
+
+  // Prefetch muy liviano de next/prev al cambiar idx (mejora UX, no afecta PSI)
+  useEffect(() => {
+    if (!open) return;
+    const preload = (i) => {
+      const img = images[i];
+      if (!img) return;
+      const base = makeBase(img.src);
+      const pre = new Image();
+      pre.decoding = "async";
+      pre.src = `${base}-1200.webp`;
+    };
+    preload((idx + 1) % images.length);
+    preload((idx - 1 + images.length) % images.length);
+  }, [idx, open, images]);
 
   return (
     <section id="galeria" className="relative overflow-hidden bg-bg">
-      
       <div className="pointer-events-none absolute top-0 left-0 right-0 h-20 z-[2] bg-gradient-to-b from-bg to-transparent" />
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 z-[2] bg-gradient-to-t from-bg to-transparent" />
 
@@ -108,27 +115,35 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
         <h2 className="section-title font-serif text-primary text-center">{title}</h2>
         <p className="text-muted mb-6 text-center">Un vistazo a nuestras prepizzas y presentaciones.</p>
 
-        {/* Grid: miniaturas cuadradas uniformes */}
+        {/* Grid: miniaturas cuadradas optimizadas */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-          {images.map((img, i) => (
-            <button
-              key={i}
-              className="group relative rounded-xl overflow-hidden bg-white shadow hover:shadow-lg transition cursor-zoom-in"
-              onClick={() => openAt(i)}
-              aria-label={`Abrir imagen ${i + 1}`}
-            >
-              <div className="aspect-square overflow-hidden">
-                <img
-                  src={img.src}
-                  alt={img.alt || `Imagen ${i + 1}`}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 select-none pointer-events-none"
-                  draggable={false}
-                />
-              </div>
-              <div className="absolute inset-0 ring-1 ring-black/5 group-hover:ring-black/10 transition" />
-            </button>
-          ))}
+          {images.map((img, i) => {
+            const base = makeBase(img.src);
+            const sets = buildSets(base);
+            return (
+              <button
+                key={i}
+                className="group relative rounded-xl overflow-hidden bg-white shadow hover:shadow-lg transition cursor-zoom-in"
+                onClick={() => openAt(i)}
+                aria-label={`Abrir imagen ${i + 1}`}
+              >
+                <div className="aspect-square overflow-hidden">
+                  <picture>
+                    <source type="image/webp" srcSet={sets.webp} sizes={thumbSizes} />
+                    <img
+                      src={sets.fallback}
+                      alt={img.alt || `Imagen ${i + 1}`}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 select-none pointer-events-none"
+                      draggable={false}
+                    />
+                  </picture>
+                </div>
+                <div className="absolute inset-0 ring-1 ring-black/5 group-hover:ring-black/10 transition" />
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -149,13 +164,25 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
           >
-            <img
-              src={images[idx]?.src}
-              alt={images[idx]?.alt || "Foto"}
-              className="w-full max-h-[80svh] object-contain rounded-2xl shadow-2xl bg-bg select-none"
-              draggable={false}
-              onContextMenu={(e) => e.preventDefault()}
-            />
+            {/* Imagen principal en alta (optimizada) */}
+            {open && images[idx] && (() => {
+              const base = makeBase(images[idx].src);
+              const sets = buildSets(base);
+              return (
+                <picture>
+                  <source type="image/webp" srcSet={sets.webp} sizes={viewSizes} />
+                  <img
+                    src={`${base}-1200.webp`}
+                    alt={images[idx].alt || "Foto"}
+                    className="w-full max-h-[80svh] object-contain rounded-2xl shadow-2xl bg-bg select-none"
+                    draggable={false}
+                    decoding="async"
+                    fetchpriority="high"
+                    onContextMenu={(e) => e.preventDefault()}
+                  />
+                </picture>
+              );
+            })()}
 
             {/* Botón Cerrar (X) */}
             <button
