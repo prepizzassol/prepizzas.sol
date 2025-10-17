@@ -44,7 +44,7 @@ export default function Carrousel() {
               src={s.src}
               alt={s.alt}
               className="w-full h-[400px] object-cover rounded-2xl cursor-pointer"
-              loading="lazy"
+              loading="preload"
             />
             <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/50 to-transparent text-white p-4 font-hand text-xl text-center">
               {s.caption}
