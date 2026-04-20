@@ -1,23 +1,26 @@
 ---
-const WHATSAPP = 'https://wa.me/5491133544047?text=Hola%20!%20Quiero%20hacer%20un%20pedido%20de%20prepizzas%20';
-import Carrousel from './Carrousel.jsx';
+const WHATSAPP =
+  "https://wa.me/5491133544047?text=Hola%20!%20Quiero%20hacer%20un%20pedido%20de%20prepizzas%20";
+import Carrousel from "./Carrousel.jsx";
 ---
 
-<section id="inicio" class="relative overflow-hidden min-h-[85vh] flex flex-col justify-center border-b-[8px] border-text">
-
+<section
+  id="inicio"
+  class="relative overflow-hidden min-h-[85vh] flex flex-col justify-center border-b-[8px] border-text"
+>
   <!-- Background slideshow -->
   <div class="absolute inset-0 z-0 bg-bg">
     {
       [
-        '/images/hero-pizza-1.jpg',
-        '/images/hero-pizza-2.jpg',
-        '/images/hero-pizza-3.jpg',
-        '/images/hero-pizza-4.jpg'
+        "/images/hero-pizza-1.jpg",
+        "/images/hero-pizza-2.jpg",
+        "/images/hero-pizza-3.jpg",
+        "/images/hero-pizza-4.jpg",
       ].map((src, index) => (
-        <img 
-          src={src} 
-          alt={`Prepizza ${index + 1}`} 
-          class={`hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100' : 'opacity-0'}`}
+        <img
+          src={src}
+          alt={`Prepizza ${index + 1}`}
+          class={`hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${index === 0 ? "opacity-100" : "opacity-0"}`}
         />
       ))
     }
@@ -26,46 +29,69 @@ import Carrousel from './Carrousel.jsx';
   </div>
 
   <!-- Contenido -->
-  <div class="container relative z-[3] flex flex-col items-center justify-center py-16 md:py-24">
-    
+  <div
+    class="container relative z-[3] flex flex-col items-center justify-center py-16 md:py-24"
+  >
     <!-- Centro: Tipografía Maximalista -->
     <div class="flex flex-col items-center gap-6 z-10 w-full">
       <div class="relative inline-block mt-8">
-        <div class="absolute -top-8 -left-4 md:-left-8 bg-primary text-white text-sm md:text-lg font-bold px-4 py-1 rounded-full neo-border neo-shadow-sm rotate-[-10deg]">¡Recién salidas!</div>
-        <h1 class="text-white leading-[0.9] !text-7xl md:!text-8xl lg:!text-[10rem] drop-shadow-[4px_4px_0_rgba(237,208,83,0.4)] md:drop-shadow-[8px_8px_0_rgba(26,74,56,1)] text-center">
-          Súper<br/>Prepizzas
+        <div
+          class="absolute -top-8 -left-4 md:-left-8 bg-primary text-white text-sm md:text-lg font-bold px-4 py-1 rounded-full neo-border neo-shadow-sm rotate-[-10deg]"
+        >
+          ¡Recién salidas!
+        </div>
+        <h1
+          class="text-white leading-[0.9] !text-7xl md:!text-8xl lg:!text-[10rem] drop-shadow-[4px_4px_0_rgba(237,208,83,0.4)] md:drop-shadow-[8px_8px_0_rgba(237,208,83,0.4)] text-center"
+        >
+          Súper<br />Prepizzas
         </h1>
       </div>
-      
-      <p class="text-text font-bold text-xl md:text-2xl max-w-xl mt-6 bg-yellow inline-block p-4 neo-shadow-sm neo-border rounded-xl text-center">
-        Tamaño grande, pizzetas e individuales.<br/>
+
+      <p
+        class="text-text font-bold text-xl md:text-2xl max-w-xl mt-6 bg-yellow inline-block p-4 neo-shadow-sm neo-border rounded-xl text-center"
+      >
+        Tamaño grande, pizzetas e individuales.<br />
         ¡Aptas freezer y listas para el horno!
       </p>
-      
+
       <div class="flex flex-wrap justify-center gap-4 mt-6">
-        <a href={WHATSAPP} target="_blank" rel="noopener" class="btn text-xl tracking-wide bg-accent text-white hover:-translate-y-1 transition-transform">¡Pedir Ya!</a>
-        <a href="#sabores" class="btn text-xl tracking-wide bg-white hover:-translate-y-1 transition-transform">Ver Menú</a>
+        <a
+          href={WHATSAPP}
+          target="_blank"
+          rel="noopener"
+          class="btn text-xl tracking-wide bg-accent text-white hover:-translate-y-1 transition-transform"
+          >¡Pedir Ya!</a
+        >
+        <a
+          href="#sabores"
+          class="btn text-xl tracking-wide bg-white hover:-translate-y-1 transition-transform"
+          >Ver Menú</a
+        >
       </div>
     </div>
-    
   </div>
 
   <!-- Small floating badge -->
-  <div class="absolute bottom-8 right-8 z-[10] bg-yellow neo-border neo-shadow rounded-full p-6 animate-[wa-pop_3s_ease-in-out_infinite] hidden md:block group hover:rotate-0 transition-transform">
-    <span class="font-display text-accent text-3xl rotate-12 block group-hover:rotate-0 transition-transform">100%<br/>Casero</span>
+  <div
+    class="absolute bottom-8 right-8 z-[10] bg-yellow neo-border neo-shadow rounded-full p-6 animate-[wa-pop_3s_ease-in-out_infinite] hidden md:block group hover:rotate-0 transition-transform"
+  >
+    <span
+      class="font-display text-accent text-3xl rotate-12 block group-hover:rotate-0 transition-transform"
+      >100%<br />Casero</span
+    >
   </div>
 </section>
 
 <script>
   let currentIndex = 0;
-  const slides = document.querySelectorAll('.hero-slide');
+  const slides = document.querySelectorAll(".hero-slide");
   if (slides.length > 1) {
     setInterval(() => {
-      slides[currentIndex].classList.remove('opacity-100');
-      slides[currentIndex].classList.add('opacity-0');
+      slides[currentIndex].classList.remove("opacity-100");
+      slides[currentIndex].classList.add("opacity-0");
       currentIndex = (currentIndex + 1) % slides.length;
-      slides[currentIndex].classList.remove('opacity-0');
-      slides[currentIndex].classList.add('opacity-100');
+      slides[currentIndex].classList.remove("opacity-0");
+      slides[currentIndex].classList.add("opacity-100");
     }, 3000);
   }
 </script>
