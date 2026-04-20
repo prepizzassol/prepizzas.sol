@@ -1,10 +1,10 @@
 ---
 const opciones = [
-  { titulo: 'Tomate Clásica', desc: 'Salsa casera y condimentos', precio: '$2000', img: '/images/tomate.png', color: 'bg-yellow' },
-  { titulo: 'Cebolla (Fugazza)', desc: 'Cebolla dorada + orégano', precio: '$2000', img: '/images/fugazzeta.png', color: 'bg-accent' },
-  { titulo: 'Mixta', desc: '½ Tomate • ½ Cebolla', precio: '$2000', img: '/images/mixta.png', color: 'bg-[#FF9B54]' },
-  { titulo: 'Pizzetas Cebolla', desc: 'Ideales para picadas', precio: '$3800 / La docena', img: '/images/pizzeta-cebolla.png', color: 'bg-[#4CAF50]' },
-  { titulo: 'Pizzetas Tomate', desc: 'Ideales para picadas', precio: '$3800 / La docena', img: '/images/pizzeta-tomate.png', color: 'bg-[#00BCD4]' }
+  { titulo: 'Tomate Clásica', desc: 'Salsa casera y condimentos', precio: '$2000', img: '/images/hero-pizza-4.jpeg', color: 'bg-yellow' },
+  { titulo: 'Cebolla (Fugazza)', desc: 'Cebolla dorada + orégano', precio: '$2000', img: '/images/hero-pizza-2.jpeg', color: 'bg-accent' },
+  { titulo: 'Mixta', desc: '½ Tomate • ½ Cebolla', precio: '$2000', img: '/images/hero-pizza-1.jpeg', color: 'bg-[#FF9B54]' },
+  { titulo: 'Pizzetas Cebolla', desc: 'Ideales para picadas', precio: '$3800 / La docena', img: '/images/pizzeta-cebolla-1.webp', color: 'bg-[#4CAF50]' },
+  { titulo: 'Pizzetas Tomate', desc: 'Ideales para picadas', precio: '$3800 / La docena', img: '/images/pizzeta-tomate.webp', color: 'bg-[#00BCD4]' }
 ];
 ---
 <section id="sabores" class="relative bg-bg py-16 md:py-24 border-b-[8px] border-text">
@@ -29,13 +29,13 @@ const opciones = [
             <!-- Imagen Collage -->
             <div class={`aspect-square sm:aspect-[4/3] ${bgColor} border-b-[3px] border-text relative flex justify-center items-center overflow-hidden p-6`}>
                <!-- Decorative Circle Backend -->
-               <div class="absolute w-3/4 h-3/4 bg-white/20 rounded-full blur-xl"></div>
+               <div class="absolute w-[90%] h-[90%] bg-white/20 rounded-full blur-xl"></div>
                 <img
                   src={o.img}
                   alt={o.titulo}
                   loading="lazy"
                   decoding="async"
-                  class="relative z-10 w-[80%] h-[80%] sm:w-[90%] sm:h-[90%] lg:w-[95%] lg:h-[95%] object-cover rounded-full border-[4px] border-text drop-shadow-[5px_5px_0_rgba(17,17,17,0.8)] transition-transform duration-300 group-hover:scale-110"
+                  class="relative z-10 w-[100%] h-[100%] sm:w-[90%] sm:h-[90%] lg:w-[95%] lg:h-[95%] object-cover rounded-full border-[4px] border-text drop-shadow-[5px_5px_0_rgba(17,17,17,0.8)] transition-transform duration-300 group-hover:scale-110"
                 />
             </div>
 
