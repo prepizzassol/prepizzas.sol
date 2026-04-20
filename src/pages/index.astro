@@ -1,20 +1,27 @@
 ---
-import Base from '../layouts/Base.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Options from '../components/Options.astro';
-import VideoSection from '../components/VideoSection.astro';
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import FeaturesMarquee from "../components/FeaturesMarquee.astro";
+import Options from "../components/Options.astro";
+import Empanadas from "../components/Empanadas.astro";
+import About from "../components/About.astro";
+import VideoSection from "../components/VideoSection.astro";
 import Gallery from "../components/Gallery.jsx";
 import ContactForm from "../components/ContactForm.astro";
 import Footer from "../components/Footer.astro";
-import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import FloatingWhatsApp from "../components/FloatingWhatsApp.astro";
 import Promos from "../components/Promos.astro";
-const WHATSAPP = 'https://wa.me/5491133544047?text=Hola%20!%20Quiero%20hacer%20un%20pedido%20de%20prepizzas%20';
+const WHATSAPP =
+  "https://wa.me/5491133544047?text=Hola%20!%20Quiero%20hacer%20un%20pedido%20de%20prepizzas%20";
 ---
+
 <Base>
   <Header />
   <Hero />
+  <FeaturesMarquee />
   <Options />
+  <Empanadas />
   <Promos />
   <Gallery client:load />
   <VideoSection
@@ -22,8 +29,9 @@ const WHATSAPP = 'https://wa.me/5491133544047?text=Hola%20!%20Quiero%20hacer%20u
   poster="/poster.jpg"
   title="Así preparamos tus prepizzas"
   copy="Masa casera, fermentación justa y cocción pareja. Elegí tomate clásico o cebolla estilo fugazza."
-/>
-<ContactForm web3formsKey="a33e18e3-45d7-43d5-bc10-121df773418d" />
-<Footer />
-<FloatingWhatsApp />
+  />
+  <ContactForm web3formsKey="a33e18e3-45d7-43d5-bc10-121df773418d" />
+  <About />
+  <Footer />
+  <FloatingWhatsApp />
 </Base>

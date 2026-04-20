@@ -3,57 +3,69 @@ const WHATSAPP = 'https://wa.me/5491133544047?text=Hola%20!%20Quiero%20hacer%20u
 import Carrousel from './Carrousel.jsx';
 ---
 
-<section
-  id="inicio"
-  class="relative overflow-hidden bg-bg"
->
+<section id="inicio" class="relative overflow-hidden min-h-[85vh] flex flex-col justify-center border-b-[8px] border-text">
 
+  <!-- Background slideshow -->
+  <div class="absolute inset-0 z-0 bg-bg">
+    {
+      [
+        '/images/hero-pizza-1.jpg',
+        '/images/hero-pizza-2.jpg',
+        '/images/hero-pizza-3.jpg',
+        '/images/hero-pizza-4.jpg'
+      ].map((src, index) => (
+        <img 
+          src={src} 
+          alt={`Prepizza ${index + 1}`} 
+          class={`hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100' : 'opacity-0'}`}
+        />
+      ))
+    }
+    <!-- Dark overlay to ensure text readability against the pizza images -->
+    <div class="absolute inset-0 bg-black/60 mix-blend-multiply"></div>
+  </div>
 
-<link
-    rel="preload"
-    as="image"
-    href="/images/prepizza-cebolla-1-1200.webp"
-    imagesrcset="/images/prepizza-cebolla-1-480.webp 480w, /images/prepizza-cebolla-1-768.webp 768w, /images/prepizza-cebolla-1-1200.webp 1200w"
-    imagesizes="(max-width: 768px) 100vw, 1200px"
-    fetchpriority="high"
-  />
-
-
-  <!-- 1 Textura de fondo -->
-  <div
-    class="absolute inset-0 z-[1] bg-[url('/texture-1.webp')] bg-cover bg-center opacity-15"
-  ></div>
-
-  <!-- 2 Overlays difuminados -->
-  <!-- Fade superior -->
-  <div class="pointer-events-none absolute top-0 left-0 right-0 h-20 z-[2]
-              bg-gradient-to-b from-bg to-transparent"></div>
-  <!-- Fade inferior -->
-  <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-24 z-[2]
-              bg-gradient-to-t from-bg to-transparent"></div>
-
-  <!-- 3 Contenido -->
-  <div class="container relative z-[3] grid grid-cols-1 md:grid-cols-2 gap-10 items-center py-12 md:py-20">
-    <!-- Columna izquierda -->
-    <div class="flex flex-col gap-6 text-center md:text-left">
-      <h1 class="font-serif text-primary text-4xl md:text-5xl leading-tight">
-        Prepizzas Caseras listas para tu horno
-      </h1>
-      <p class="text-muted font-sans text-lg max-w-lg mx-auto md:mx-0">
+  <!-- Contenido -->
+  <div class="container relative z-[3] flex flex-col items-center justify-center py-16 md:py-24">
+    
+    <!-- Centro: Tipografía Maximalista -->
+    <div class="flex flex-col items-center gap-6 z-10 w-full">
+      <div class="relative inline-block mt-8">
+        <div class="absolute -top-8 -left-4 md:-left-8 bg-primary text-white text-sm md:text-lg font-bold px-4 py-1 rounded-full neo-border neo-shadow-sm rotate-[-10deg]">¡Recién salidas!</div>
+        <h1 class="text-white leading-[0.9] !text-7xl md:!text-8xl lg:!text-[10rem] drop-shadow-[4px_4px_0_rgba(237,208,83,0.4)] md:drop-shadow-[8px_8px_0_rgba(26,74,56,1)] text-center">
+          Súper<br/>Prepizzas
+        </h1>
+      </div>
+      
+      <p class="text-text font-bold text-xl md:text-2xl max-w-xl mt-6 bg-yellow inline-block p-4 neo-shadow-sm neo-border rounded-xl text-center">
         Tamaño grande, pizzetas e individuales.<br/>
-        ¡Aptas freezer y listas para horno o parrilla!
+        ¡Aptas freezer y listas para el horno!
       </p>
-      <div class="flex flex-wrap justify-center md:justify-start gap-3">
-        <a href={WHATSAPP} target="_blank" rel="noopener" class="btn">Pedir por WhatsApp</a>
-        <a href="#sabores" class="btn bg-accent text-white hover:opacity-90">Ver opciones</a>
+      
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <a href={WHATSAPP} target="_blank" rel="noopener" class="btn text-xl tracking-wide bg-accent text-white hover:-translate-y-1 transition-transform">¡Pedir Ya!</a>
+        <a href="#sabores" class="btn text-xl tracking-wide bg-white hover:-translate-y-1 transition-transform">Ver Menú</a>
       </div>
     </div>
+    
+  </div>
 
-    <!-- Columna derecha: carrusel -->
-    <div class="flex justify-center md:justify-end">
-      <Carrousel client:load />
-    </div>
+  <!-- Small floating badge -->
+  <div class="absolute bottom-8 right-8 z-[10] bg-yellow neo-border neo-shadow rounded-full p-6 animate-[wa-pop_3s_ease-in-out_infinite] hidden md:block group hover:rotate-0 transition-transform">
+    <span class="font-display text-accent text-3xl rotate-12 block group-hover:rotate-0 transition-transform">100%<br/>Casero</span>
   </div>
 </section>
 
-
+<script>
+  let currentIndex = 0;
+  const slides = document.querySelectorAll('.hero-slide');
+  if (slides.length > 1) {
+    setInterval(() => {
+      slides[currentIndex].classList.remove('opacity-100');
+      slides[currentIndex].classList.add('opacity-0');
+      currentIndex = (currentIndex + 1) % slides.length;
+      slides[currentIndex].classList.remove('opacity-0');
+      slides[currentIndex].classList.add('opacity-100');
+    }, 3000);
+  }
+</script>

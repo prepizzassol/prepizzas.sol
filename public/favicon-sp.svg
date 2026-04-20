@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Shrikhand&amp;display=swap');
+    text {
+      font-family: 'Shrikhand', Impact, sans-serif;
+      font-weight: 900;
+    }
+  </style>
+  <circle cx="48" cy="48" r="44" fill="#ffd166" stroke="#111" stroke-width="6"/>
+  <text x="48" y="65" text-anchor="middle" font-size="46" fill="#111">SP</text>
+</svg>

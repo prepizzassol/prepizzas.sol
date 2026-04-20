@@ -1,0 +1,38 @@
+---
+// src/components/Hero.astro
+---
+
+<section class="relative w-full min-h-screen bg-[#F4F0E6] text-[#2A3A29] overflow-hidden flex flex-col justify-center items-center px-4">
+  
+  <nav class="absolute top-0 w-full flex justify-between items-center p-6 max-w-7xl mx-auto">
+    <div class="font-bold text-xl tracking-tighter">casero.sp ☀️</div>
+    <ul class="hidden md:flex gap-4 border border-[#2A3A29] rounded-full px-6 py-2">
+      <li><a href="#nosotros" class="hover:text-[#D8423D] transition">Nosotros</a></li>
+      <li><a href="#menu" class="hover:text-[#D8423D] transition">Variedades</a></li>
+      <li><a href="#delivery" class="hover:text-[#D8423D] transition">Delivery</a></li>
+    </ul>
+    <button class="bg-[#D8423D] text-[#F4F0E6] px-6 py-2 rounded-full font-bold hover:bg-[#2A3A29] transition">
+      HACER PEDIDO
+    </button>
+  </nav>
+
+  <div class="relative w-full max-w-6xl mx-auto flex justify-center items-center mt-20">
+    
+    <h1 class="text-[15rem] md:text-[25rem] font-black tracking-tighter leading-none z-0">
+      SOL
+    </h1>
+
+    <img 
+      src="/images/prepizza-sol-hero.png" 
+      alt="La mejor prepizza de Villa Adelina" 
+      class="absolute z-10 w-[80%] md:w-[50%] drop-shadow-2xl hover:scale-105 transition-transform duration-500"
+    />
+  </div>
+
+  <div class="absolute bottom-10 left-10 max-w-xs">
+    <p class="text-xl font-medium leading-tight">
+      El auténtico sabor casero en Villa Adelina.
+    </p>
+  </div>
+
+</section>

@@ -110,9 +110,12 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
       <div className="pointer-events-none absolute top-0 left-0 right-0 h-20 z-[2] bg-gradient-to-b from-bg to-transparent" />
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 z-[2] bg-gradient-to-t from-bg to-transparent" />
 
-      <div className="container relative z-[3] py-14 md:py-20">
-        <h2 className="section-title font-serif text-primary text-center">{title}</h2>
-        <p className="text-muted mb-6 text-center">Un vistazo a nuestras prepizzas y presentaciones.</p>
+      <div className="container relative z-[3] py-16 md:py-24 text-center">
+        <h2 className="font-display text-text text-5xl md:text-7xl drop-shadow-[4px_4px_0_rgba(230,57,70,1)] -rotate-1 inline-block mb-6">
+          {title}
+        </h2>
+        <br />
+        <p className="text-text font-bold text-xl inline-block bg-yellow p-2 neo-border neo-shadow-sm rounded-xl rotate-1 mb-10">Un vistazo a nuestras delicias.</p>
 
         {/* Grid: miniaturas cuadradas optimizadas */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
@@ -122,11 +125,11 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
             return (
               <button
                 key={i}
-                className="group relative rounded-xl overflow-hidden bg-white shadow hover:shadow-lg transition cursor-zoom-in"
+                className="group relative overflow-hidden bg-white neo-brutal neo-shadow-sm neo-shadow-hover transition cursor-zoom-in"
                 onClick={() => openAt(i)}
                 aria-label={`Abrir imagen ${i + 1}`}
               >
-                <div className="aspect-square overflow-hidden">
+                <div className="aspect-square overflow-hidden border-b-[3px] border-text">
                   <picture>
                     <source type="image/webp" srcSet={sets.webp} sizes={thumbSizes} />
                     <img
@@ -139,7 +142,7 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
                     />
                   </picture>
                 </div>
-                <div className="absolute inset-0 ring-1 ring-black/5 group-hover:ring-black/10 transition" />
+                <div className="absolute inset-0 ring-1 ring-black/5 group-hover:bg-yellow/20 transition pointer-events-none" />
               </button>
             );
           })}
@@ -173,7 +176,7 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
                   <img
                     src={`${base}-1200.webp`}
                     alt={images[idx].alt || "Foto"}
-                    className="w-full max-h-[80svh] object-contain rounded-2xl shadow-2xl bg-bg select-none"
+                    className="w-full max-h-[80svh] object-contain rounded-[2rem] neo-border neo-shadow-lg bg-bg select-none"
                     draggable={false}
                     decoding="async"
                     fetchpriority="high"
@@ -186,7 +189,7 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
             {/* Botón Cerrar (X) */}
             <button
               onClick={close}
-              className="absolute -top-3 right-0 md:-right-4 md:-top-4 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-text grid place-items-center shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
+              className="absolute -top-3 right-0 md:-right-4 md:-top-4 w-12 h-12 rounded-full bg-accent text-white font-bold text-xl neo-border neo-shadow-sm neo-shadow-hover grid place-items-center focus:outline-none"
               aria-label="Cerrar"
             >
               ✕
@@ -195,21 +198,21 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
             {/* Prev / Next */}
             <button
               onClick={prev}
-              className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-text grid place-items-center shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
+              className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-yellow text-text text-2xl font-bold neo-border neo-shadow-sm neo-shadow-hover grid place-items-center focus:outline-none"
               aria-label="Anterior"
             >
               ‹
             </button>
             <button
               onClick={next}
-              className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-text grid place-items-center shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
+              className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-yellow text-text text-2xl font-bold neo-border neo-shadow-sm neo-shadow-hover grid place-items-center focus:outline-none"
               aria-label="Siguiente"
             >
               ›
             </button>
 
             {/* Indicador */}
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-white/85 text-xs text-text">
+            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-white neo-border neo-shadow-sm font-bold text-text">
               {idx + 1} / {images.length}
             </div>
           </div>

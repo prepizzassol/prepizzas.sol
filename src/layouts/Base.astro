@@ -1,8 +1,8 @@
 ---
-const { title = 'Prepizzas.Sol', description = 'Prepizzas grandes, pizzetas e individuales. Tomate o cebolla.', ogImage = '/ogimage.webp' } = Astro.props;
+const { title = 'CASERO SP | Comida Artesanal', description = 'Súper prepizzas y empanadas 100% caseras hechas con amor desde Villa Adelina.', ogImage = '/images/og-image.jpg' } = Astro.props;
 import '../styles/global.css';
 ---
-<html lang="es">
+<html lang="es" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,13 +11,13 @@ import '../styles/global.css';
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <link rel="icon" href="/favicon-2.webp" />
+    <link rel="icon" type="image/svg+xml" href="/favicon-sp.svg" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Space+Grotesk:wght@400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/src/styles/global.css" />
   </head>
-  <body>
+  <body class="bg-bg text-text font-sans antialiased overflow-x-hidden selection:bg-primary selection:text-white">
     <slot />
   </body>
 </html>

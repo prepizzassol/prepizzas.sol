@@ -1,70 +1,121 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Playfair+Display:ital,wght@0,400..800;1,400..800&family=Delius+Swash+Caps&display=swap');
 
-/* 🎨 Paleta + Fuentes personalizadas */
+/* 🎨 Paleta Groovy + Brutalista */
 @theme {
   /* Colores */
-  --color-bg: #FAEDD3;
-  --color-primary: #6B1B3C;
-  --color-accent: #7D2A4F;
-  --color-price: #8A4B20;
-  --color-text: #1C1C1C;
-  --color-muted: #6A6A6A;
+  --color-bg: #FAEDD3;       /* Crema */
+  --color-primary: #1A4A38;  /* Verde oscuro */
+  --color-accent: #E63946;   /* Rojo tomate */
+  --color-yellow: #FFD166;   /* Amarillo brillante */
+  --color-text: #111111;     /* Casi negro */
+  --color-muted: #555555;    /* Gris */
 
   /* Fuentes */
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-serif: "Playfair Display", Georgia, serif;
-  --font-hand: "Delius Swash Caps", cursive;
+  --font-sans: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --font-display: "Shrikhand", cursive;
 }
 
 /* Exponer variables CSS globalmente */
 :root {
   --color-bg: #FAEDD3;
-  --color-primary: #6B1B3C;
-  --color-accent: #7D2A4F;
-  --color-price: #8A4B20;
-  --color-text: #1C1C1C;
-  --color-muted: #6A6A6A;
-  --font-hand: "Delius Swash Caps", cursive;
+  --color-primary: #1A4A38;
+  --color-accent: #E63946;
+  --color-yellow: #FFD166;
+  --color-text: #111111;
+  --color-muted: #555555;
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+  --font-display: "Shrikhand", cursive;
 }
 
 /* 🧱 Base global */
-html, body {
-  @apply bg-bg text-text font-sans antialiased;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 /* ✨ Jerarquía tipográfica */
-h1, h2, h3, .section-title {
-  @apply font-serif text-primary tracking-tight;
+h1, h2, h3, .font-display {
+  @apply font-display text-text tracking-normal;
 }
 
-h1 { @apply text-4xl md:text-5xl font-bold; }
-h2 { @apply text-2xl md:text-3xl font-semibold; }
-h3 { @apply text-xl md:text-2xl font-semibold; }
+h1 { @apply text-5xl md:text-7xl lg:text-8xl; }
+h2 { @apply text-4xl md:text-6xl; }
+h3 { @apply text-2xl md:text-4xl; }
 
-.badge, .hand, .script {
-  @apply font-hand text-accent;
+/* 📦 Utilidades Neo-Brutalistas */
+@layer utilities {
+  .neo-shadow {
+    box-shadow: 6px 6px 0px 0px var(--color-text);
+  }
+  
+  .neo-shadow-sm {
+    box-shadow: 4px 4px 0px 0px var(--color-text);
+  }
+
+  .neo-shadow-lg {
+    box-shadow: 12px 12px 0px 0px var(--color-text);
+  }
+
+  .neo-shadow-hover:hover {
+    box-shadow: 2px 2px 0px 0px var(--color-text);
+    transform: translate(4px, 4px);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .neo-border {
+    border: 3px solid var(--color-text);
+  }
+
+  .neo-brutal {
+    border: 3px solid var(--color-text);
+    box-shadow: 6px 6px 0px 0px var(--color-text);
+    border-radius: 1.5rem;
+  }
 }
 
 /* 📦 Componentes reutilizables */
 .container {
-  @apply max-w-[1100px] mx-auto px-6;
+  @apply max-w-[1200px] mx-auto px-6;
 }
 
 .btn {
-  @apply inline-flex items-center justify-center rounded-full px-4 py-2 font-semibold text-white bg-primary hover:opacity-90 transition;
+  @apply inline-flex items-center justify-center font-bold rounded-full px-6 py-3 transition;
+  background-color: var(--color-yellow);
+  color: var(--color-text);
+  border: 3px solid var(--color-text);
+  box-shadow: 4px 4px 0px 0px var(--color-text);
+}
+
+.btn:hover {
+  box-shadow: 2px 2px 0px 0px var(--color-text);
+  transform: translate(2px, 2px);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.btn-accent {
+  background-color: var(--color-accent);
+  color: white;
 }
 
 .badge {
-  @apply inline-flex items-center rounded-full px-3 py-1 text-white bg-accent text-sm;
+  @apply inline-flex items-center rounded-full px-4 py-2 font-bold;
+  background-color: var(--color-yellow);
+  color: var(--color-text);
+  border: 3px solid var(--color-text);
+  box-shadow: 4px 4px 0px 0px var(--color-text);
 }
 
+/* Swiper overrides if any */
 .swiper-pagination-bullet {
   background: var(--color-primary);
   opacity: 0.5;
   transition: all 0.2s ease;
 }
-
 .swiper-pagination-bullet-active {
   opacity: 1;
   background: var(--color-accent);
@@ -72,5 +123,14 @@ h3 { @apply text-xl md:text-2xl font-semibold; }
 
 @keyframes wa-pop {
   0%, 100% { transform: translateY(0) scale(1); }
-  50%      { transform: translateY(-2px) scale(1.05); }
+  50%      { transform: translateY(-4px) scale(1.05); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
 }
