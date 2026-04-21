@@ -106,7 +106,7 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
   }, [idx, open, images]);
 
   return (
-    <section id="galeria" className="relative overflow-hidden bg-bg">
+    <section id="galeria" className="relative overflow-hidden bg-bg border-b-[8px] border-text">
       <div className="pointer-events-none absolute top-0 left-0 right-0 h-20 z-[2] bg-gradient-to-b from-bg to-transparent" />
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 z-[2] bg-gradient-to-t from-bg to-transparent" />
 
