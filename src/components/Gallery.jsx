@@ -111,25 +111,33 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 z-[2] bg-gradient-to-t from-bg to-transparent" />
 
       <div className="container relative z-[3] py-16 md:py-24 text-center">
-        <h2 className="font-display text-text text-5xl md:text-7xl drop-shadow-[2px_2px_0_rgba(230,57,70,1)] -rotate-1 inline-block mb-6">
-          {title}
-        </h2>
+        <div className="flex justify-center mb-6">
+          <h2 className="inline-block relative">
+            <span className="text-5xl md:text-7xl font-display text-text font-bold text-center">{title}</span>
+            {/* Subrayado decorativo SVG */}
+            <svg className="absolute -bottom-4 left-0 w-full h-4 text-accent" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round"/></svg>
+          </h2>
+        </div>
         <br />
-        <p className="text-text font-bold text-xl inline-block bg-yellow p-2 neo-border neo-shadow-sm rounded-xl rotate-1 mb-10">Un vistazo a nuestras delicias.</p>
+        <p className="text-text font-medium text-lg inline-block bg-yellow px-6 py-2 scrapbook-border rotate-2 mb-10 shadow-sm">
+          Un vistazo a nuestras delicias.
+        </p>
 
-        {/* Grid: miniaturas cuadradas optimizadas */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+        {/* Grid: miniaturas estilo polaroid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
           {images.map((img, i) => {
             const base = makeBase(img.src);
             const sets = buildSets(base);
+            const rotClass = i % 3 === 0 ? '-rotate-2' : i % 3 === 1 ? 'rotate-3' : '-rotate-1';
+            
             return (
               <button
                 key={i}
-                className="group relative overflow-hidden bg-white neo-brutal neo-shadow-sm neo-shadow-hover transition cursor-zoom-in"
+                className={`group relative polaroid-frame transition-transform hover:-translate-y-2 cursor-zoom-in ${rotClass}`}
                 onClick={() => openAt(i)}
                 aria-label={`Abrir imagen ${i + 1}`}
               >
-                <div className="aspect-square overflow-hidden border-b-[3px] border-text">
+                <div className="aspect-square overflow-hidden scrapbook-border mb-3">
                   <picture>
                     <source type="image/webp" srcSet={sets.webp} sizes={thumbSizes} />
                     <img
@@ -142,7 +150,7 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
                     />
                   </picture>
                 </div>
-                <div className="absolute inset-0 ring-1 ring-black/5 group-hover:bg-yellow/20 transition pointer-events-none" />
+                <div className="absolute inset-0 ring-1 ring-black/5 group-hover:bg-yellow/10 transition pointer-events-none" />
               </button>
             );
           })}
@@ -176,10 +184,10 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
                   <img
                     src={`${base}-1200.webp`}
                     alt={images[idx].alt || "Foto"}
-                    className="w-full max-h-[80svh] object-contain rounded-[2rem] neo-border neo-shadow-lg bg-bg select-none"
+                    className="w-full max-h-[80svh] object-contain bg-white p-2 md:p-4 scrapbook-border scrapbook-shadow select-none"
                     draggable={false}
                     decoding="async"
-                    fetchpriority="high"
+                    fetchPriority="high"
                     onContextMenu={(e) => e.preventDefault()}
                   />
                 </picture>
@@ -189,7 +197,7 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
             {/* Botón Cerrar (X) */}
             <button
               onClick={close}
-              className="absolute -top-3 right-0 md:-right-4 md:-top-4 w-12 h-12 rounded-full bg-accent text-white font-bold text-xl neo-border neo-shadow-sm neo-shadow-hover grid place-items-center focus:outline-none"
+              className="absolute -top-3 right-0 md:-right-4 md:-top-4 w-12 h-12 bg-primary text-white font-bold text-xl scrapbook-border scrapbook-shadow transition-transform hover:scale-110 grid place-items-center focus:outline-none z-10"
               aria-label="Cerrar"
             >
               ✕
@@ -198,21 +206,21 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
             {/* Prev / Next */}
             <button
               onClick={prev}
-              className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-yellow text-text text-2xl font-bold neo-border neo-shadow-sm neo-shadow-hover grid place-items-center focus:outline-none"
+              className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-yellow text-text text-2xl font-bold scrapbook-border scrapbook-shadow transition-transform hover:scale-110 grid place-items-center focus:outline-none z-10"
               aria-label="Anterior"
             >
               ‹
             </button>
             <button
               onClick={next}
-              className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-yellow text-text text-2xl font-bold neo-border neo-shadow-sm neo-shadow-hover grid place-items-center focus:outline-none"
+              className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-yellow text-text text-2xl font-bold scrapbook-border scrapbook-shadow transition-transform hover:scale-110 grid place-items-center focus:outline-none z-10"
               aria-label="Siguiente"
             >
               ›
             </button>
 
             {/* Indicador */}
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-white neo-border neo-shadow-sm font-bold text-text">
+            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 px-4 py-1 bg-white scrapbook-border scrapbook-shadow font-bold text-text z-10">
               {idx + 1} / {images.length}
             </div>
           </div>
