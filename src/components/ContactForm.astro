@@ -13,22 +13,21 @@ const {
   <div class="pointer-events-none absolute top-0 left-0 right-0 h-16 z-[2] bg-gradient-to-b from-bg to-transparent"></div>
   <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-20 z-[2] bg-gradient-to-t from-bg to-transparent"></div>
 
-  <div class="container relative z-[3] py-14 md:py-20 grid gap-10 md:grid-cols-2 items-start">
+  <div class="container relative z-[3] py-14 md:py-20 flex flex-col items-center gap-10">
     <!-- Texto -->
-    <div class="flex flex-col gap-4 text-center md:text-left">
+    <div class="flex flex-col gap-4 text-center max-w-2xl md:text-lg">
       <h2 class="font-serif text-primary text-3xl md:text-4xl">{title}</h2>
-      <p class="text-muted">{copy}</p>
-      <ul class="text-sm text-muted/90 list-disc pl-5 mt-2 space-y-1 text-left">
-        <li>Respondo a la brevedad por mail o WhatsApp.</li>
-        <li>Podés elegir <strong>Tomate</strong>, <strong>Cebolla</strong> o <strong>Mixta</strong>.</li>
+      <p class="text-muted font-medium">{copy}</p>
+      <ul class="text-sm md:text-base text-muted/90 list-disc mt-2 space-y-1 text-left inline-block w-fit self-center px-4">
+        <li>Respondo a la brevedad confirmando tu pedido.</li>
+        <li>Podés combinar <strong>prepizzas</strong>, <strong>pizzetas</strong> y <strong>empanadas</strong> como prefieras.</li>
       </ul>
-      <a href={whatsapp} target="_blank" rel="noopener" class="btn mt-3 w-fit self-center md:self-start">Contactar por WhatsApp</a>
     </div>
 
     <!-- Formulario -->
     <form
       id="pedidoForm"
-      class="bg-white/90 rounded-2xl shadow-2xl p-5 md:p-6 space-y-4 backdrop-blur"
+      class="bg-white/90 rounded-2xl shadow-2xl p-5 md:p-8 space-y-4 backdrop-blur w-full max-w-3xl"
       method="POST"
       action="https://api.web3forms.com/submit"
       novalidate
@@ -69,38 +68,127 @@ const {
         </div>
       </div>
 
-      <!-- Opciones -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-        <div>
-          <label class="block text-sm font-medium mb-1" for="sabor">Sabor*</label>
-          <select id="sabor" name="sabor" required
-            class="w-full rounded-xl border border-black/10 px-0.5 py-2 outline-none bg-white focus:ring-2 focus:ring-primary/30">
-            <option value="">Elegí una opción</option>
-            <option>Tomate</option>
-            <option>Cebolla</option>
-            <option>Mixta</option>
-            <option>Tomate Grande</option>
-            <option>Cebolla Grande</option>
-            <option>Mixta Grande</option>
-            <option>Pizzeta</option>
-          </select>
-          <p data-err-for="sabor" class="mt-1 text-sm text-[#b00020] hidden">Elegí un sabor.</p>
-        </div>
-        <div>
-          <label class="block text-sm font-medium mb-1" for="cantidad">Cantidad*</label>
-          <input id="cantidad" name="cantidad" type="number" min="1" required placeholder="1"
-            class="w-full rounded-xl border border-black/10 px-3 py-2 outline-none focus:ring-2 focus:ring-primary/30" />
-          <p data-err-for="cantidad" class="mt-1 text-sm text-[#b00020] hidden">Indicá la cantidad.</p>
-        </div>
-        <div>
-          <label class="block text-sm font-medium mb-1">Entrega</label>
-          <div class="flex gap-3 items-center">
-            <label class="inline-flex items-center gap-2">
-              <input type="radio" name="entrega" value="Retiro" class="accent-primary" checked />
-              <span>Retiro por local</span>
+      <!-- Productos -->
+      <div id="productos-container" class="space-y-6">
+        <!-- Prepizzas -->
+        <div class="bg-white/60 p-4 rounded-xl border border-black/10 shadow-sm">
+          <h3 class="font-bold text-lg border-b border-black/10 pb-2 mb-3 text-primary">Prepizzas</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-4">
+            <label class="flex justify-between items-center gap-3">
+              <span class="text-sm font-medium leading-tight">Tomate</span>
+              <div class="flex items-center gap-2 bg-white rounded-full border border-black/10 p-1 shrink-0">
+                <button type="button" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center font-bold text-lg hover:bg-gray-200 text-black leading-none" onclick="this.nextElementSibling.stepDown()">-</button>
+                <input type="number" min="0" value="0" data-name="Prepizza(s) de Tomate" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0" readonly />
+                <button type="button" class="w-7 h-7 rounded-full bg-yellow flex items-center justify-center font-bold text-lg hover:bg-yellow/80 text-black leading-none" onclick="this.previousElementSibling.stepUp()">+</button>
+              </div>
+            </label>
+            <label class="flex justify-between items-center gap-3">
+              <span class="text-sm font-medium leading-tight">Cebolla (Fugazza)</span>
+              <div class="flex items-center gap-2 bg-white rounded-full border border-black/10 p-1 shrink-0">
+                <button type="button" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center font-bold text-lg hover:bg-gray-200 text-black leading-none" onclick="this.nextElementSibling.stepDown()">-</button>
+                <input type="number" min="0" value="0" data-name="Prepizza(s) de Cebolla" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0" readonly />
+                <button type="button" class="w-7 h-7 rounded-full bg-yellow flex items-center justify-center font-bold text-lg hover:bg-yellow/80 text-black leading-none" onclick="this.previousElementSibling.stepUp()">+</button>
+              </div>
+            </label>
+            <label class="flex justify-between items-center gap-3">
+              <span class="text-sm font-medium leading-tight">Mixta</span>
+              <div class="flex items-center gap-2 bg-white rounded-full border border-black/10 p-1 shrink-0">
+                <button type="button" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center font-bold text-lg hover:bg-gray-200 text-black leading-none" onclick="this.nextElementSibling.stepDown()">-</button>
+                <input type="number" min="0" value="0" data-name="Prepizza(s) Mixta(s)" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0" readonly />
+                <button type="button" class="w-7 h-7 rounded-full bg-yellow flex items-center justify-center font-bold text-lg hover:bg-yellow/80 text-black leading-none" onclick="this.previousElementSibling.stepUp()">+</button>
+              </div>
             </label>
           </div>
         </div>
+
+        <!-- Pizzetas -->
+        <div id="pizzetas-container" class="bg-white/60 p-4 rounded-xl border border-black/10 shadow-sm">
+          <div class="flex justify-between items-baseline border-b border-black/10 pb-2 mb-3">
+            <h3 class="font-bold text-lg text-accent">Pizzetas</h3>
+            <span class="text-xs font-normal text-muted">(En unidades. Mín. 12)</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+            <label class="flex justify-between items-center gap-3">
+              <span class="text-sm font-medium leading-tight">Cebolla</span>
+              <div class="flex items-center gap-2 bg-white rounded-full border border-black/10 p-1 shrink-0">
+                <button type="button" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center font-bold text-lg hover:bg-gray-200 text-black leading-none" onclick="this.nextElementSibling.stepDown()">-</button>
+                <input type="number" min="0" step="6" value="0" data-name="Pizzetas Cebolla" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0" readonly />
+                <button type="button" class="w-7 h-7 rounded-full bg-yellow flex items-center justify-center font-bold text-lg hover:bg-yellow/80 text-black leading-none" onclick="this.previousElementSibling.stepUp()">+</button>
+              </div>
+            </label>
+            <label class="flex justify-between items-center gap-3">
+              <span class="text-sm font-medium leading-tight">Tomate</span>
+              <div class="flex items-center gap-2 bg-white rounded-full border border-black/10 p-1 shrink-0">
+                <button type="button" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center font-bold text-lg hover:bg-gray-200 text-black leading-none" onclick="this.nextElementSibling.stepDown()">-</button>
+                <input type="number" min="0" step="6" value="0" data-name="Pizzetas Tomate" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0" readonly />
+                <button type="button" class="w-7 h-7 rounded-full bg-yellow flex items-center justify-center font-bold text-lg hover:bg-yellow/80 text-black leading-none" onclick="this.previousElementSibling.stepUp()">+</button>
+              </div>
+            </label>
+          </div>
+          <p data-err-for="pizzetas" class="mt-2 text-sm text-[#b00020] hidden font-medium">Las pizzetas se piden con un mínimo de 1 docena (12 uds).</p>
+        </div>
+
+        <!-- Empanadas -->
+        <div id="empanadas-container" class="bg-white/60 p-4 rounded-xl border border-black/10 shadow-sm">
+          <div class="flex justify-between items-baseline border-b border-black/10 pb-2 mb-3">
+            <h3 class="font-bold text-lg text-[#F3620E]">Empanadas</h3>
+            <span class="text-xs font-normal text-muted">(En unidades. Mín. 12)</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+            <label class="flex justify-between items-center gap-3">
+              <span class="text-sm font-medium leading-tight">Muzzarella y Jamón</span>
+              <div class="flex items-center gap-2 bg-white rounded-full border border-black/10 p-1 shrink-0">
+                <button type="button" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center font-bold text-lg hover:bg-gray-200 text-black leading-none" onclick="this.nextElementSibling.stepDown()">-</button>
+                <input type="number" min="0" step="6" value="0" data-name="Empanadas Muzzarella y Jamón" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0" readonly />
+                <button type="button" class="w-7 h-7 rounded-full bg-yellow flex items-center justify-center font-bold text-lg hover:bg-yellow/80 text-black leading-none" onclick="this.previousElementSibling.stepUp()">+</button>
+              </div>
+            </label>
+            <label class="flex justify-between items-center gap-3">
+              <span class="text-sm font-medium leading-tight">Muzzarella y Verdura</span>
+              <div class="flex items-center gap-2 bg-white rounded-full border border-black/10 p-1 shrink-0">
+                <button type="button" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center font-bold text-lg hover:bg-gray-200 text-black leading-none" onclick="this.nextElementSibling.stepDown()">-</button>
+                <input type="number" min="0" step="6" value="0" data-name="Empanadas Verdura" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0" readonly />
+                <button type="button" class="w-7 h-7 rounded-full bg-yellow flex items-center justify-center font-bold text-lg hover:bg-yellow/80 text-black leading-none" onclick="this.previousElementSibling.stepUp()">+</button>
+              </div>
+            </label>
+            <label class="flex justify-between items-center gap-3">
+              <span class="text-sm font-medium leading-tight">Muzzarella y Cebolla</span>
+              <div class="flex items-center gap-2 bg-white rounded-full border border-black/10 p-1 shrink-0">
+                <button type="button" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center font-bold text-lg hover:bg-gray-200 text-black leading-none" onclick="this.nextElementSibling.stepDown()">-</button>
+                <input type="number" min="0" step="6" value="0" data-name="Empanadas Cebolla y Queso" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0" readonly />
+                <button type="button" class="w-7 h-7 rounded-full bg-yellow flex items-center justify-center font-bold text-lg hover:bg-yellow/80 text-black leading-none" onclick="this.previousElementSibling.stepUp()">+</button>
+              </div>
+            </label>
+            <label class="flex justify-between items-center gap-3">
+              <span class="text-sm font-medium leading-tight">Caprese</span>
+              <div class="flex items-center gap-2 bg-white rounded-full border border-black/10 p-1 shrink-0">
+                <button type="button" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center font-bold text-lg hover:bg-gray-200 text-black leading-none" onclick="this.nextElementSibling.stepDown()">-</button>
+                <input type="number" min="0" step="6" value="0" data-name="Empanadas Caprese" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0" readonly />
+                <button type="button" class="w-7 h-7 rounded-full bg-yellow flex items-center justify-center font-bold text-lg hover:bg-yellow/80 text-black leading-none" onclick="this.previousElementSibling.stepUp()">+</button>
+              </div>
+            </label>
+          </div>
+          <p data-err-for="empanadas" class="mt-2 text-sm text-[#b00020] hidden font-medium">Las empanadas se piden con un mínimo de 1 docena (12 uds).</p>
+        </div>
+
+        <!-- Entrega -->
+        <div class="bg-white/60 p-4 rounded-xl border border-black/10 shadow-sm">
+          <label class="block text-sm font-bold mb-2">Entrega</label>
+          <div class="flex flex-wrap gap-4 items-center">
+            <label class="inline-flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="entrega" value="Retiro por local" class="accent-primary w-4 h-4" checked />
+              <span class="font-medium">Retiro por local</span>
+            </label>
+            <label class="inline-flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="entrega" value="Envío (consultar costo)" class="accent-primary w-4 h-4" />
+              <span class="font-medium">Envío (consultar costo)</span>
+            </label>
+          </div>
+        </div>
+
+        <p data-err-for="productos" class="mt-1 text-sm text-[#b00020] hidden font-medium">Por favor agregá al menos 1 producto a tu pedido.</p>
+        <!-- Campo oculto para enviar todo el detalle junto en Web3Forms -->
+        <input type="hidden" name="Detalle_de_Pedido" id="detalle_pedido_hidden" />
       </div>
 
       <!-- Mensaje -->
@@ -116,21 +204,40 @@ const {
       </div>
 
       <!-- Acciones -->
-      <div class="flex items-center gap-3">
+      <div class="flex flex-col sm:flex-row items-center gap-3 mt-4">
+        <button
+          id="whatsappLinkBtn"
+          type="button"
+          class="btn flex-1 w-full text-center !bg-[#25D366] hover:!bg-[#128C7E] !text-white border-2 border-black !shadow-[4px_4px_0_rgba(17,17,17,1)] transition-colors"
+        >
+          Enviar por WhatsApp
+        </button>
         <button
           id="submitBtn"
           type="submit"
-          class="btn"
-        >Enviar pedido</button>
+          class="btn flex-1 w-full text-center !bg-white !text-black border-2 border-black !shadow-[4px_4px_0_rgba(17,17,17,1)] hover:!bg-gray-50 transition-colors"
+        >Enviar por email</button>
       </div>
     </form>
   </div>
+
+  <style>
+    input[type="number"]::-webkit-inner-spin-button, 
+    input[type="number"]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+    }
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+  </style>
 
   <!-- Script: validación + envío fetch a Web3Forms + feedback -->
   <script is:inline>
     const form = document.getElementById('pedidoForm');
     const state = document.getElementById('formState');
     const submitBtn = document.getElementById('submitBtn');
+    const wppBtn = document.getElementById('whatsappLinkBtn');
 
     const showError = (id) => {
       const p = document.querySelector(`[data-err-for="${id}"]`);
@@ -140,28 +247,72 @@ const {
       document.querySelectorAll('[data-err-for]').forEach(el => el.classList.add('hidden'));
     };
 
-    form?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      clearErrors();
+    const getOrderDetails = () => {
+      const inputs = document.querySelectorAll('.producto-qty');
+      let details = [];
+      let totalItems = 0;
+      inputs.forEach(input => {
+        const qty = parseInt(input.value) || 0;
+        if (qty > 0) {
+          details.push(`- ${qty}x ${input.getAttribute('data-name')}`);
+          totalItems += qty;
+        }
+      });
+      return { text: details.join('\n'), totalItems };
+    };
 
-      // Validación mínima
+    const isFormValid = () => {
+      clearErrors();
       const nombre = /** @type {HTMLInputElement} */(document.getElementById('nombre'));
       const tel = /** @type {HTMLInputElement} */(document.getElementById('telefono'));
-      const sabor = /** @type {HTMLSelectElement} */(document.getElementById('sabor'));
-      const cant = /** @type {HTMLInputElement} */(document.getElementById('cantidad'));
-
       let ok = true;
+
       if (!nombre.value.trim()) { showError('nombre'); ok = false; }
       if (!tel.value.trim())    { showError('telefono'); ok = false; }
-      if (!sabor.value.trim())  { showError('sabor'); ok = false; }
-      if (!cant.value.trim() || Number(cant.value) < 1) { showError('cantidad'); ok = false; }
 
+      const order = getOrderDetails();
+
+      const getCategoryTotal = (containerSelector) => {
+        let total = 0;
+        document.querySelectorAll(`${containerSelector} .producto-qty`).forEach(input => {
+          total += parseInt(input.value) || 0;
+        });
+        return total;
+      };
+
+      const empanadasTotal = getCategoryTotal('#empanadas-container');
+      const pizzetasTotal = getCategoryTotal('#pizzetas-container');
+
+      if (empanadasTotal > 0 && empanadasTotal < 12) {
+        showError('empanadas');
+        ok = false;
+      }
+      if (pizzetasTotal > 0 && pizzetasTotal < 12) {
+        showError('pizzetas');
+        ok = false;
+      }
+
+      if (order.totalItems === 0) {
+        showError('productos');
+        ok = false;
+      }
+
+      return { ok, order, nombre: nombre.value.trim(), tel: tel.value.trim() };
+    };
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const { ok, order } = isFormValid();
       if (!ok) {
         state.textContent = 'Revisá los campos marcados.';
         return;
       }
 
-      // Preparar payload para Web3Forms
+      // Preparar payload
+      const detalleInput = document.getElementById('detalle_pedido_hidden');
+      detalleInput.value = "\n" + order.text;
+      
       const data = new FormData(form);
 
       // UX: deshabilitar mientras envía
@@ -176,6 +327,7 @@ const {
         if (json.success) {
           state.textContent = '¡Listo! Te contactamos a la brevedad.';
           form.reset();
+          document.querySelectorAll('.producto-qty').forEach(i => i.value = '0');
         } else {
           state.textContent = 'No se pudo enviar. Probá de nuevo o escribime por WhatsApp.';
           console.error('Web3Forms error:', json);
@@ -187,6 +339,27 @@ const {
         submitBtn.disabled = false;
         submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
       }
+    });
+
+    wppBtn?.addEventListener('click', () => {
+      const { ok, order, nombre, tel } = isFormValid();
+      
+      if (!ok) {
+        state.textContent = 'Revisá los campos marcados antes de enviar.';
+        return;
+      }
+
+      state.textContent = '';
+      const mensaje = /** @type {HTMLTextAreaElement} */(document.getElementById('mensaje')).value.trim();
+      const entrega = document.querySelector('input[name="entrega"]:checked')?.value || 'Retiro por local';
+      
+      let text = `¡Hola Casero SP! Soy ${nombre}. Quería hacer el siguiente pedido:\n\n*Detalle del pedido:*\n${order.text}\n`;
+      text += `\n*Entrega:* ${entrega}`;
+      if (tel) text += `\n*Mi Teléfono:* ${tel}`;
+      if (mensaje) text += `\n\n*Mensaje adicional:* ${mensaje}`;
+
+      const encoded = encodeURIComponent(text);
+      window.open(`https://wa.me/5491133544047?text=${encoded}`, '_blank');
     });
   </script>
 </section>
