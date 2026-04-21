@@ -1,36 +1,48 @@
 @import "tailwindcss";
 
-/* 🎨 Paleta Groovy + Brutalista */
+/* 🎨 Paleta Scrapbook / Artesanal */
 @theme {
   /* Colores */
-  --color-bg: #FAEDD3;       /* Crema */
-  --color-primary: #1A4A38;  /* Verde oscuro */
-  --color-accent: #E63946;   /* Rojo tomate */
-  --color-yellow: #FFD166;   /* Amarillo brillante */
-  --color-text: #111111;     /* Casi negro */
-  --color-muted: #555555;    /* Gris */
+  --color-bg: #FCF8F1;       /* Crema suave / Papel pergamino */
+  --color-primary: #4A3728;  /* Marrón café profundo */
+  --color-accent: #FFDAB9;   /* Naranja pastel */
+  --color-yellow: #FFF3CD;   /* Amarillo pastel */
+  --color-green: #D4EDDA;    /* Verde pastel */
+  --color-purple: #E2D1F9;   /* Lavanda pastel */
+  --color-text: #4A3728;     /* Marrón café profundo */
+  --color-muted: #8A7362;    /* Gris amarronado */
 
   /* Fuentes */
-  --font-sans: "Space Grotesk", system-ui, -apple-system, sans-serif;
-  --font-display: "Shrikhand", cursive;
+  --font-sans: "Quicksand", system-ui, -apple-system, sans-serif;
+  --font-display: "Handlee", cursive;
 }
 
 /* Exponer variables CSS globalmente */
 :root {
-  --color-bg: #FAEDD3;
-  --color-primary: #1A4A38;
-  --color-accent: #E63946;
-  --color-yellow: #FFD166;
-  --color-text: #111111;
-  --color-muted: #555555;
-  --font-sans: "Space Grotesk", system-ui, sans-serif;
-  --font-display: "Shrikhand", cursive;
+  --color-bg: #FCF8F1;
+  --color-primary: #4A3728;
+  --color-accent: #FFDAB9;
+  --color-yellow: #FFF3CD;
+  --color-green: #D4EDDA;
+  --color-purple: #E2D1F9;
+  --color-text: #4A3728;
+  --color-texto: #241c17;
+  --color-muted: #8A7362;
+  --font-sans: "Quicksand", system-ui, sans-serif;
+  --font-display: "Handlee", cursive;
 }
 
 /* 🧱 Base global */
 @layer base {
   html {
     scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: var(--color-bg);
+    /* Textura de papel sutil usando SVG inline (generador de ruido) */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    color: var(--color-text);
   }
 }
 
@@ -43,34 +55,21 @@ h1 { @apply text-5xl md:text-7xl lg:text-8xl; }
 h2 { @apply text-4xl md:text-6xl; }
 h3 { @apply text-2xl md:text-4xl; }
 
-/* 📦 Utilidades Neo-Brutalistas */
+/* 📦 Utilidades Scrapbook / Artesanal */
 @layer utilities {
-  .neo-shadow {
-    box-shadow: 6px 6px 0px 0px var(--color-text);
-  }
-  
-  .neo-shadow-sm {
-    box-shadow: 4px 4px 0px 0px var(--color-text);
+  .scrapbook-shadow {
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.08);
   }
 
-  .neo-shadow-lg {
-    box-shadow: 12px 12px 0px 0px var(--color-text);
+  .scrapbook-border {
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    border: 2px solid var(--color-text);
   }
 
-  .neo-shadow-hover:hover {
-    box-shadow: 2px 2px 0px 0px var(--color-text);
-    transform: translate(4px, 4px);
-    transition: all 0.2s ease-in-out;
-  }
-
-  .neo-border {
-    border: 3px solid var(--color-text);
-  }
-
-  .neo-brutal {
-    border: 3px solid var(--color-text);
-    box-shadow: 6px 6px 0px 0px var(--color-text);
-    border-radius: 1.5rem;
+  .polaroid-frame {
+    background: white;
+    padding: 12px 12px 40px 12px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
   }
 }
 
@@ -80,16 +79,17 @@ h3 { @apply text-2xl md:text-4xl; }
 }
 
 .btn {
-  @apply inline-flex items-center justify-center font-bold rounded-full px-6 py-3 transition;
+  @apply inline-flex items-center justify-center font-bold px-8 py-3 transition;
   background-color: var(--color-yellow);
   color: var(--color-text);
-  border: 3px solid var(--color-text);
-  box-shadow: 4px 4px 0px 0px var(--color-text);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  border: 2px solid var(--color-text);
+  box-shadow: 3px 3px 0px rgba(74, 55, 40, 0.2);
 }
 
 .btn:hover {
-  box-shadow: 2px 2px 0px 0px var(--color-text);
-  transform: translate(2px, 2px);
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0px rgba(74, 55, 40, 0.2);
 }
 
 .btn-primary {
@@ -99,15 +99,15 @@ h3 { @apply text-2xl md:text-4xl; }
 
 .btn-accent {
   background-color: var(--color-accent);
-  color: white;
+  color: var(--color-text);
 }
 
 .badge {
-  @apply inline-flex items-center rounded-full px-4 py-2 font-bold;
-  background-color: var(--color-yellow);
+  @apply inline-flex items-center rounded-full px-4 py-2 font-bold text-sm;
+  background-color: white;
   color: var(--color-text);
-  border: 3px solid var(--color-text);
-  box-shadow: 4px 4px 0px 0px var(--color-text);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  border: 1px solid var(--color-text);
 }
 
 /* Swiper overrides if any */

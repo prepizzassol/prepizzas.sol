@@ -4,7 +4,7 @@
 
 <section
   id="empanadas"
-  class="bg-primary text-bg py-24 px-4 border-b-[8px] border-text relative overflow-hidden"
+  class="bg-accent text-text py-24 px-4 relative overflow-hidden"
 >
   <!-- Contenido principal -->
   <div
@@ -12,19 +12,19 @@
   >
     <div class="text-center md:text-left flex flex-col gap-6">
       <h2
-        class="text-12xl md:text-8xl font-display text-white drop-shadow-[6px_3px_0_rgba(237,208,83,0.4)] leading-[0.9] -rotate-2"
+        class="text-6xl md:text-8xl font-display font-bold leading-[0.9] -rotate-2"
       >
         Nuestras<br />Empanadas
       </h2>
       <p
-        class="text-2xl md:text-3xl font-bold bg-yellow text-text neo-border neo-shadow-sm inline-block p-4 rounded-xl rotate-1 self-start"
+        class="text-xl md:text-2xl font-bold bg-white text-text scrapbook-border scrapbook-shadow inline-block px-4 py-2 rotate-1 self-start"
       >
         Estilo canastita, extra rellenas.
       </p>
 
       <div class="mt-4">
         <span
-          class="bg-accent text-white font-display text-4xl px-6 py-3 rounded-full neo-border neo-shadow-sm rotate-[-3deg] inline-block"
+          class="bg-yellow text-text font-display text-3xl px-6 py-2 scrapbook-border scrapbook-shadow rotate-[-3deg] inline-block font-bold"
         >
           $18.000 / Docena
         </span>
@@ -32,31 +32,68 @@
 
       <div class="mt-8 flex flex-col gap-4">
         <div
-          class="bg-white text-text neo-border neo-shadow-md rounded-[2rem] p-6 text-xl font-bold"
+          class="bg-white text-text scrapbook-border scrapbook-shadow p-6 text-xl font-bold"
         >
-          <ul class="flex flex-col gap-3">
+          <ul class="flex flex-col gap-4">
             <li class="flex items-center gap-3">
-              <span
-                class="w-4 h-4 bg-yellow rounded-full border-2 border-text inline-block"
-              ></span>
+              <!-- SVG Icon -->
+              <svg
+                class="w-6 h-6 text-green"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path
+                  d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                ></path></svg
+              >
               Muzzarella y Jamón Cocido
             </li>
             <li class="flex items-center gap-3">
-              <span
-                class="w-4 h-4 bg-accent rounded-full border-2 border-text inline-block"
-              ></span>
+              <svg
+                class="w-6 h-6 text-green"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path
+                  d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                ></path></svg
+              >
               Muzzarella y Verdura
             </li>
             <li class="flex items-center gap-3">
-              <span
-                class="w-4 h-4 bg-primary rounded-full border-2 border-text inline-block"
-              ></span>
+              <svg
+                class="w-6 h-6 text-green"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path
+                  d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                ></path></svg
+              >
               Muzzarella y Cebolla
             </li>
             <li class="flex items-center gap-3">
-              <span
-                class="w-4 h-4 bg-[#F3620E] rounded-full border-2 border-text inline-block"
-              ></span>
+              <svg
+                class="w-6 h-6 text-green"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path
+                  d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                ></path></svg
+              >
               Caprese
             </li>
           </ul>
@@ -67,14 +104,17 @@
     <!-- Imagen lado derecho -->
     <div class="relative flex justify-center mt-12 md:mt-0 z-10 group">
       <div
-        class="absolute w-80 h-80 md:w-[450px] md:h-[450px] bg-yellow rounded-full neo-border neo-shadow-lg transition-transform duration-500"
+        class="polaroid-frame rotate-[6deg] group-hover:rotate-0 transition-transform duration-500 w-full max-w-[600px] md:max-w-[450px]"
       >
+        <img
+          src="/images/empanadas-3.png"
+          alt="Canastita Capresse dorada crujiente"
+          class="w-full h-auto aspect-square object-cover"
+        />
+        <p class="font-display text-center text-xl mt-4 font-bold">
+          100% Hechas a mano
+        </p>
       </div>
-      <img
-        src="/images/empanadas-hero-3.png"
-        alt="Canastita Capresse dorada crujiente"
-        class="relative z-10 w-full max-w-[500px] md:max-w-[600px] drop-shadow-[20px_20px_0_rgba(17,17,17,0.8)] rotate-12 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
-      />
     </div>
   </div>
 </section>

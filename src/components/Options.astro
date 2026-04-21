@@ -1,51 +1,58 @@
 ---
 const opciones = [
-  { titulo: 'Tomate Clásica', desc: 'Salsa casera y condimentos', precio: '$2000', img: '/images/hero-pizza-4.jpeg', color: 'bg-yellow' },
+  { titulo: 'Tomate Clásica', desc: 'Salsa casera y condimentos', precio: '$2000', img: '/images/hero-pizza-4.jpeg', color: 'bg-green' },
   { titulo: 'Cebolla (Fugazza)', desc: 'Cebolla dorada + orégano', precio: '$2000', img: '/images/hero-pizza-2.jpeg', color: 'bg-accent' },
-  { titulo: 'Mixta', desc: '½ Tomate • ½ Cebolla', precio: '$2000', img: '/images/hero-pizza-1.jpeg', color: 'bg-[#FF9B54]' },
-  { titulo: 'Pizzetas Cebolla', desc: 'Ideales para picadas', precio: '$3800 / La docena', img: '/images/pizzeta-cebolla-1.webp', color: 'bg-[#4CAF50]' },
-  { titulo: 'Pizzetas Tomate', desc: 'Ideales para picadas', precio: '$3800 / La docena', img: '/images/pizzeta-tomate.webp', color: 'bg-[#00BCD4]' }
+  { titulo: 'Mixta', desc: '½ Tomate • ½ Cebolla', precio: '$2000', img: '/images/hero-pizza-1.jpeg', color: 'bg-yellow' },
+  { titulo: 'Pizzetas Cebolla', desc: 'Ideales para picadas', precio: '$3800 / La docena', img: '/images/pizzeta-cebolla-1.webp', color: 'bg-purple' },
+  { titulo: 'Pizzetas Tomate', desc: 'Ideales para picadas', precio: '$3800 / La docena', img: '/images/pizzeta-tomate.webp', color: 'bg-green' }
 ];
 ---
-<section id="sabores" class="relative bg-bg py-16 md:py-24 border-b-[8px] border-text">
+<section id="sabores" class="relative bg-bg py-16 md:py-24">
   <div class="container relative z-[3]">
-    <div class="text-center mb-12">
-      <h2 class="font-display text-text text-5xl md:text-7xl drop-shadow-[4px_4px_0_rgba(230,57,70,1)] -rotate-2 inline-block">Nuestras Pizzas</h2>
-      <p class="text-text font-bold text-xl mt-4 bg-yellow inline-block p-2 neo-shadow-sm neo-border rounded-xl rotate-1">Elegí tu base favorita. ¡Aptas freezer!</p>
+    <div class="text-center mb-16">
+      <h2 class="font-display text-text text-5xl md:text-7xl -rotate-2 inline-block font-bold">
+        Nuestras Pizzas
+        <svg class="w-full h-3 text-green mt-2" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+      </h2>
+      <br/>
+      <p class="text-text font-bold text-xl mt-6 bg-yellow inline-block px-4 py-2 scrapbook-border scrapbook-shadow rotate-1">Elegí tu base favorita. ¡Aptas freezer!</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
       {opciones.map((o, i) => {
         const rotationMap = ['-rotate-2', 'rotate-1', 'rotate-2', '-rotate-1', 'rotate-3'];
-        const delayMap = ['duration-300', 'duration-500', 'duration-[400ms]', 'duration-700', 'duration-300'];
         const rot = rotationMap[i % rotationMap.length];
-        const dur = delayMap[i % delayMap.length];
-        const bgColor = i % 2 === 0 ? 'bg-[#FFD166]' : 'bg-[#FF9B54]';
 
         return (
           <article
-            class={`group relative bg-white neo-brutal overflow-hidden transition-transform ${rot} ${dur} hover:rotate-0 hover:-translate-y-2 flex flex-col`}
+            class={`group relative ${o.color} scrapbook-border overflow-hidden transition-transform ${rot} hover:rotate-0 hover:-translate-y-2 flex flex-col scrapbook-shadow`}
           >
+            <!-- Badge SVG Decorativo -->
+            <div class="absolute top-4 right-4 z-30 bg-white text-text font-bold px-3 py-1 text-sm rounded-full border border-text flex items-center gap-1">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                 <path d="M12 2v20M2 12h20M20 16l-4-4 4-4M4 8l4 4-4 4M16 4l-4 4-4-4M8 20l4-4 4 4"/>
+              </svg>
+              Apto Freezer
+            </div>
+
             <!-- Imagen Collage -->
-            <div class={`aspect-square sm:aspect-[4/3] ${bgColor} border-b-[3px] border-text relative flex justify-center items-center overflow-hidden p-6`}>
-               <!-- Decorative Circle Backend -->
-               <div class="absolute w-[90%] h-[90%] bg-white/20 rounded-full blur-xl"></div>
+            <div class={`aspect-square sm:aspect-[4/3] border-b-[2px] border-text relative flex justify-center items-center overflow-hidden p-6`}>
                 <img
                   src={o.img}
                   alt={o.titulo}
                   loading="lazy"
                   decoding="async"
-                  class="relative z-10 w-[100%] h-[100%] sm:w-[90%] sm:h-[90%] lg:w-[95%] lg:h-[95%] object-cover rounded-full border-[4px] border-text drop-shadow-[5px_5px_0_rgba(17,17,17,0.8)] transition-transform duration-300 group-hover:scale-110"
+                  class="relative z-10 w-[100%] h-[100%] sm:w-[90%] sm:h-[90%] lg:w-[95%] lg:h-[95%] object-cover rounded-full border-[4px] border-white scrapbook-shadow transition-transform duration-300 group-hover:scale-105"
                 />
             </div>
 
             <!-- Contenido -->
             <div class="p-6 flex flex-col gap-2 relative bg-white z-20 flex-1">
-              <h3 class="font-display text-2xl md:text-3xl tracking-wide">{o.titulo}</h3>
+              <h3 class="font-display font-bold text-2xl md:text-3xl tracking-wide text-text">{o.titulo}</h3>
               <p class="text-lg font-bold text-muted">{o.desc}</p>
 
               <div class="mt-auto pt-4 flex items-center justify-between">
-                <span class="inline-flex items-center rounded-full px-4 py-1 bg-yellow neo-border neo-shadow-sm text-text text-lg font-bold">
+                <span class="inline-flex items-center bg-yellow scrapbook-border px-4 py-1 text-text text-lg font-bold scrapbook-shadow">
                   {o.precio}
                 </span>
               </div>
@@ -54,10 +61,10 @@ const opciones = [
         )
       })}
 
-      <!-- 6to Espacio: Sello Identidad HTML -->
+      <!-- 6to Espacio: Sello Identidad Cursiva -->
       <div class="flex flex-col items-center justify-center p-4 min-h-[300px]">
-        <div class="w-full max-w-[250px] aspect-square rounded-full bg-yellow border-[6px] border-text drop-shadow-[10px_10px_0_rgba(17,17,17,0.8)] flex flex-col items-center justify-center rotate-[-4deg] transition-transform duration-500 hover:rotate-3 hover:scale-105 p-6 text-center select-none cursor-default group">
-           <h2 class="font-display text-[90px] md:text-[120px] text-text z-10 pt-4 tracking-tighter group-hover:scale-110 transition-transform duration-300">SP</h2>
+        <div class="w-full max-w-[250px] aspect-square rounded-full bg-yellow border-[3px] border-text flex flex-col items-center justify-center rotate-[-4deg] transition-transform duration-500 hover:rotate-3 hover:scale-105 p-6 text-center select-none cursor-default scrapbook-shadow">
+           <h2 class="font-display text-[50px] md:text-[60px] text-text font-bold leading-[1.1] transition-transform duration-300 pt-2">Casero S.P</h2>
         </div>
       </div>
 

@@ -1,97 +1,109 @@
 ---
 const WHATSAPP =
   "https://wa.me/5491133544047?text=Hola%20!%20Quiero%20hacer%20un%20pedido%20de%20prepizzas%20";
-import Carrousel from "./Carrousel.jsx";
+import HeroBackground from "./HeroBackground.jsx";
 ---
 
 <section
   id="inicio"
-  class="relative overflow-hidden min-h-[85vh] flex flex-col justify-center border-b-[8px] border-text"
+  class="relative overflow-hidden min-h-[85vh] flex flex-col justify-center"
 >
-  <!-- Background slideshow -->
-  <div class="absolute inset-0 z-0 bg-bg">
-    {
-      [
-        "/images/hero-pizza-1.jpeg",
-        "/images/hero-pizza-2.jpeg",
-        "/images/hero-pizza-3.jpeg",
-        "/images/hero-pizza-4.jpeg",
-      ].map((src, index) => (
-        <img
-          src={src}
-          alt={`Prepizza ${index + 1}`}
-          class={`hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${index === 0 ? "opacity-100" : "opacity-0"}`}
-        />
-      ))
-    }
-    <!-- Dark overlay to ensure text readability against the pizza images -->
-    <div class="absolute inset-0 bg-black/60 mix-blend-multiply"></div>
+  <!-- Fondo Carrusel Animado (Position absolute forzado) -->
+  <div class="absolute inset-0 z-0 w-full h-full">
+    <HeroBackground client:load />
   </div>
 
-  <!-- Contenido -->
+  <!-- Overlay muy sutil, en tonos crema para asegurar legibilidad del texto oscuro -->
+  <div class="absolute inset-0 z-[1] bg-bg/20 backdrop-blur-[0.5px]"></div>
+
   <div
-    class="container relative z-[3] flex flex-col items-center justify-center py-16 md:py-24"
+    class="container relative z-[3] py-16 md:py-24 flex flex-col items-center text-center"
   >
-    <!-- Centro: Tipografía Maximalista -->
-    <div class="flex flex-col items-center gap-6 z-10 w-full">
-      <div class="relative inline-block mt-8">
-        <div
-          class="absolute -top-8 -left-4 md:-left-8 bg-primary text-white text-sm md:text-lg font-bold px-4 py-1 rounded-full neo-border neo-shadow-sm rotate-[-10deg]"
+    <!-- Elementos Flotantes Scrapbook (Desktop) -->
+    <div class="absolute top-10 left-4 lg:left-10 hidden md:block">
+      <div
+        class="px-4 py-2 bg-accent scrapbook-border scrapbook-shadow text-text font-bold text-lg rotate-[-8deg]"
+      >
+        ¡Recién salidas!
+      </div>
+    </div>
+
+    <div class="absolute bottom-10 right-4 lg:right-10 hidden md:block">
+      <div
+        class="w-28 h-28 bg-yellow rounded-full border-4 border-text flex items-center justify-center scrapbook-shadow rotate-[12deg]"
+      >
+        <span
+          class="font-display text-text font-bold text-2xl leading-none text-center"
+          >100%<br />Casero</span
         >
-          ¡Recién salidas!
-        </div>
-        <h1
-          class="text-white leading-[0.9] !text-7xl md:!text-8xl lg:!text-[10rem] drop-shadow-[4px_4px_0_rgba(237,208,83,0.4)] md:drop-shadow-[8px_8px_0_rgba(237,208,83,0.4)] text-center"
-        >
-          Súper<br />Prepizzas
-        </h1>
+      </div>
+    </div>
+
+    <!-- Contenido Principal: Textos sobre el carrusel -->
+    <div class="flex flex-col items-center gap-6 max-w-4xl mx-auto z-10 w-full">
+      <div
+        class="inline-block md:hidden px-4 py-2 bg-yellow scrapbook-border scrapbook-shadow text-text font-bold text-sm rotate-[-3deg] mb-2"
+      >
+        ¡Recién salidas del horno!
       </div>
 
-      <p
-        class="text-text font-bold text-xl md:text-2xl max-w-xl mt-6 bg-yellow inline-block p-4 neo-shadow-sm neo-border rounded-xl text-center"
+      <h1
+        class="text-text font-display leading-[1.1] text-6xl md:text-8xl lg:text-[7.5rem] font-bold drop-shadow-md"
       >
-        Tamaño grande, pizzetas e individuales.<br />
-        ¡Aptas freezer y listas para el horno!
-      </p>
+        <span class="text-[#241c17]">Las mejores</span>
+        <br />
+        <span
+          id="hero-underline"
+          class="inline-block relative z-10 text-[#241c17]"
+          >Prepizzas caseras</span
+        >
+      </h1>
 
-      <div class="flex flex-wrap justify-center gap-4 mt-6">
+      <!-- Caja de descripción pequeña estilo scrapbook -->
+      <div
+        class="bg-bg/95 p-4 md:p-6 scrapbook-border scrapbook-shadow max-w-2xl mt-4 rotate-1"
+      >
+        <p class="text-text font-bold text-lg md:text-xl">
+          Tamaño grande, pizzetas e individuales. <br />
+          ¡Aptas freezer y listas para el horno o parrilla!
+        </p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-6 mt-6">
         <a
           href={WHATSAPP}
           target="_blank"
           rel="noopener"
-          class="btn text-xl tracking-wide bg-accent text-white hover:-translate-y-1 transition-transform"
-          >¡Pedir Ya!</a
+          class="btn text-xl tracking-wide bg-accent text-text scrapbook-shadow scrapbook-border hover:-translate-y-1 transition-transform"
         >
+          Hacé tu pedido
+        </a>
         <a
           href="#sabores"
-          class="btn text-xl tracking-wide bg-white hover:-translate-y-1 transition-transform"
-          >Ver Menú</a
+          class="btn text-xl tracking-wide bg-white text-text scrapbook-shadow scrapbook-border hover:-translate-y-1 transition-transform"
         >
+          Ver Menú
+        </a>
       </div>
     </div>
-  </div>
-
-  <!-- Small floating badge -->
-  <div
-    class="absolute bottom-8 right-8 z-[10] bg-yellow neo-border neo-shadow rounded-full p-6 animate-[wa-pop_3s_ease-in-out_infinite] hidden md:block group hover:rotate-0 transition-transform"
-  >
-    <span
-      class="font-display text-accent text-3xl rotate-12 block group-hover:rotate-0 transition-transform"
-      >100%<br />Casero</span
-    >
   </div>
 </section>
 
 <script>
-  let currentIndex = 0;
-  const slides = document.querySelectorAll(".hero-slide");
-  if (slides.length > 1) {
-    setInterval(() => {
-      slides[currentIndex].classList.remove("opacity-100");
-      slides[currentIndex].classList.add("opacity-0");
-      currentIndex = (currentIndex + 1) % slides.length;
-      slides[currentIndex].classList.remove("opacity-0");
-      slides[currentIndex].classList.add("opacity-100");
-    }, 3000);
-  }
+  import { annotate } from "rough-notation";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const el = document.getElementById("hero-underline");
+    if (el) {
+      const annotation = annotate(el, {
+        type: "underline",
+        color: "#FFDAB9",
+        strokeWidth: 8,
+        padding: 2,
+      });
+      setTimeout(() => {
+        annotation.show();
+      }, 500);
+    }
+  });
 </script>

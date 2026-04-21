@@ -19,14 +19,14 @@ const {
 </svg>
 </a>
 
-<script is:inline>
+<script is:inline define:vars={{ message }}>
   const a = document.getElementById('waFab');
   try {
-    const baseMessage = {{ JSON.stringify(message) }}; // ← inyecta texto crudo
+    const baseMessage = message; 
     const current = window.location.href;
     const text = `${baseMessage}\n\nPágina: ${current}`;
     const u = new URL(a.href);
-    u.searchParams.set('text', encodeURIComponent(text)); // SIN reemplazar espacios por '+'
+    u.searchParams.set('text', text); 
     a.href = u.toString();
   } catch {}
 </script>

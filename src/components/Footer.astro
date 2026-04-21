@@ -7,10 +7,7 @@ const {
 } = Astro.props;
 ---
 
-<footer class="relative overflow-hidden bg-bg border-t border-black/10 mt-10">
-  <!-- textura + blur -->
-  <div class="absolute inset-0 backdrop-blur-[2px] z-[2]"></div>
-
+<footer class="relative overflow-hidden bg-bg mt-10">
   <div
     class="relative z-[3] container py-10 flex flex-col md:flex-row justify-between items-center gap-5 text-center md:text-left"
   >
@@ -19,35 +16,37 @@ const {
     >
       <a
         href="#inicio"
-        class="flex flex-col items-center justify-center w-20 h-20 bg-yellow rounded-full border-[4px] border-text neo-shadow-sm rotate-[-3deg] hover:scale-110 hover:rotate-3 transition-transform relative overflow-hidden group mb-2"
+        class="flex flex-col items-center justify-center hover:scale-105 transition-transform mb-2"
       >
-        <span
-          class="font-display tracking-tighter text-text text-[42px] leading-none relative z-10 mt-1 pt-1 group-hover:scale-110 transition-transform]"
-          >SP</span
+        <span class="font-display tracking-normal text-text text-5xl font-bold"
+          >Casero S.P</span
         >
       </a>
-      <p class="text-sm text-muted">Hechas con amor desde Villa Adelina 🍕</p>
+      <p class="text-sm text-muted font-bold">
+        Hechas con amor desde Villa Adelina
+      </p>
     </div>
 
     <!-- Links -->
-    <nav class="flex flex-wrap justify-center gap-4">
+    <nav class="flex flex-wrap justify-center gap-6">
       <a
         href="#inicio"
-        class="text-sm hover:text-primary transition-colors font-sans">Inicio</a
+        class="text-base hover:text-accent font-bold transition-colors font-sans"
+        >Inicio</a
       >
       <a
         href="#sabores"
-        class="text-sm hover:text-primary transition-colors font-sans"
+        class="text-base hover:text-accent font-bold transition-colors font-sans"
         >Sabores</a
       >
       <a
         href="#galeria"
-        class="text-sm hover:text-primary transition-colors font-sans"
+        class="text-base hover:text-accent font-bold transition-colors font-sans"
         >Galería</a
       >
       <a
         href="#contacto"
-        class="text-sm hover:text-primary transition-colors font-sans"
+        class="text-base hover:text-accent font-bold transition-colors font-sans"
         >Contacto</a
       >
     </nav>
@@ -59,7 +58,7 @@ const {
         target="_blank"
         rel="noopener"
         aria-label="Instagram"
-        class="hover:scale-110 transition-transform"
+        class="hover:scale-110 transition-transform bg-white scrapbook-border scrapbook-shadow p-2 rounded-full"
       >
         <img
           src="/icons/instagram.svg"
@@ -72,7 +71,7 @@ const {
         target="_blank"
         rel="noopener"
         aria-label="WhatsApp"
-        class="hover:scale-110 transition-transform"
+        class="hover:scale-110 transition-transform bg-white scrapbook-border scrapbook-shadow p-2 rounded-full"
       >
         <img
           src="/icons/whatsapp.svg"
@@ -83,7 +82,7 @@ const {
       <a
         href={email}
         aria-label="Correo"
-        class="hover:scale-110 transition-transform"
+        class="hover:scale-110 transition-transform bg-white scrapbook-border scrapbook-shadow p-2 rounded-full"
       >
         <img
           src="/icons/mail.svg"
@@ -94,9 +93,7 @@ const {
     </div>
   </div>
 
-  <div
-    class="relative z-[3] border-t border-black/10 py-3 text-center text-xs text-muted/70"
-  >
-    © {year} casero.sp — Todos los derechos reservados.
+  <div class="relative z-[3] py-4 text-center text-sm font-bold text-muted/70">
+    © {year} Casero S.P — Todos los derechos reservados.
   </div>
 </footer>

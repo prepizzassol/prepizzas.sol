@@ -7,27 +7,24 @@ const {
 } = Astro.props;
 ---
 
-<section id="contacto" class="relative overflow-hidden bg-bg border-b-[8px] border-text">
-  <!-- textura + fades -->
-  <div class="absolute inset-0 z-[1] bg-[url('/texture-1.webp')] bg-repeat bg-cover opacity-10"></div>
-  <div class="pointer-events-none absolute top-0 left-0 right-0 h-16 z-[2] bg-gradient-to-b from-bg to-transparent"></div>
-  <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-20 z-[2] bg-gradient-to-t from-bg to-transparent"></div>
-
-  <div class="container relative z-[3] py-14 md:py-20 flex flex-col items-center gap-10">
+<section id="contacto" class="relative overflow-hidden bg-bg py-16 md:py-24">
+  <div class="container relative z-[3] flex flex-col items-center gap-10">
     <!-- Texto -->
     <div class="flex flex-col gap-4 text-center max-w-2xl md:text-lg">
-      <h2 class="font-serif text-primary text-3xl md:text-4xl">{title}</h2>
-      <p class="text-muted font-medium">{copy}</p>
-      <ul class="text-sm md:text-base text-muted/90 list-disc mt-2 space-y-1 text-left inline-block w-fit self-center px-4">
-        <li>Respondo a la brevedad confirmando tu pedido.</li>
-        <li>Podés combinar <strong>prepizzas</strong>, <strong>pizzetas</strong> y <strong>empanadas</strong> como prefieras.</li>
-      </ul>
+      <h2 class="font-display text-text text-5xl md:text-6xl font-bold">{title}</h2>
+      <p class="text-muted font-bold text-xl">{copy}</p>
+      <div class="bg-yellow scrapbook-border scrapbook-shadow inline-block p-4 mt-2">
+        <ul class="text-sm md:text-base text-text font-medium list-disc space-y-1 text-left inline-block w-fit self-center px-4">
+          <li>Respondo a la brevedad confirmando tu pedido.</li>
+          <li>Podés combinar <strong>prepizzas</strong>, <strong>pizzetas</strong> y <strong>empanadas</strong> como prefieras.</li>
+        </ul>
+      </div>
     </div>
 
     <!-- Formulario -->
     <form
       id="pedidoForm"
-      class="bg-white/90 rounded-2xl shadow-2xl p-5 md:p-8 space-y-4 backdrop-blur w-full max-w-3xl"
+      class="bg-white rounded-3xl scrapbook-shadow scrapbook-border p-6 md:p-10 space-y-6 w-full max-w-3xl"
       method="POST"
       action="https://api.web3forms.com/submit"
       novalidate
@@ -36,34 +33,32 @@ const {
       <input type="hidden" name="access_key" value={web3formsKey} />
       <input type="hidden" name="subject" value="Nuevo pedido desde la landing casero.sp" />
       <input type="hidden" name="from_name" value="casero.sp" />
-      <!-- si querés que te llegue el reply-to del usuario: -->
-      <!-- <input type="hidden" name="replyto" value="" /> -->
 
       <!-- Honeypot anti-bot -->
       <input type="text" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
 
       <!-- Nombre -->
       <div>
-        <label for="nombre" class="block text-sm font-medium mb-1">Nombre*</label>
+        <label for="nombre" class="block text-lg font-display font-bold text-text mb-1">Nombre*</label>
         <input id="nombre" name="name" required placeholder="Tu nombre"
-          class="w-full rounded-xl border border-black/10 px-3 py-2 outline-none focus:ring-2 focus:ring-primary/30"
+          class="w-full rounded-2xl border-2 border-text px-4 py-3 outline-none focus:ring-2 focus:ring-accent bg-bg font-medium text-text"
         />
         <p data-err-for="nombre" class="mt-1 text-sm text-[#b00020] hidden">Ingresá tu nombre.</p>
       </div>
 
       <!-- Teléfono / WhatsApp -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label for="telefono" class="block text-sm font-medium mb-1">Teléfono / WhatsApp*</label>
+          <label for="telefono" class="block text-lg font-display font-bold text-text mb-1">Teléfono / WhatsApp*</label>
           <input id="telefono" name="phone" required inputmode="tel" placeholder="11 1234 5678"
-            class="w-full rounded-xl border border-black/10 px-3 py-2 outline-none focus:ring-2 focus:ring-primary/30"
+            class="w-full rounded-2xl border-2 border-text px-4 py-3 outline-none focus:ring-2 focus:ring-accent bg-bg font-medium text-text"
           />
           <p data-err-for="telefono" class="mt-1 text-sm text-[#b00020] hidden">Ingresá un teléfono válido.</p>
         </div>
         <div>
-          <label for="email" class="block text-sm font-medium mb-1">Email</label>
+          <label for="email" class="block text-lg font-display font-bold text-text mb-1">Email</label>
           <input id="email" type="email" name="email" placeholder="tu@email.com"
-            class="w-full rounded-xl border border-black/10 px-3 py-2 outline-none focus:ring-2 focus:ring-primary/30"
+            class="w-full rounded-2xl border-2 border-text px-4 py-3 outline-none focus:ring-2 focus:ring-accent bg-bg font-medium text-text"
           />
         </div>
       </div>
@@ -71,57 +66,57 @@ const {
       <!-- Productos -->
       <div id="productos-container" class="space-y-6">
         <!-- Prepizzas -->
-        <div class="bg-white/60 p-4 rounded-xl border border-black/10 shadow-sm">
-          <h3 class="font-bold text-lg border-b border-black/10 pb-2 mb-3 text-primary">Prepizzas</h3>
+        <div class="bg-green/20 p-5 rounded-2xl border-2 border-green border-dashed">
+          <h3 class="font-bold text-xl font-display text-text mb-4">Prepizzas</h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-4">
             <label class="flex justify-between items-center gap-3">
-              <span class="text-sm font-medium leading-tight">Tomate</span>
-              <div class="flex items-center gap-2 bg-white rounded-full border border-black/10 p-1 shrink-0">
-                <button type="button" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center font-bold text-lg hover:bg-gray-200 text-black leading-none" onclick="this.nextElementSibling.stepDown()">-</button>
-                <input type="number" min="0" value="0" data-name="Prepizza(s) de Tomate" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0" readonly />
-                <button type="button" class="w-7 h-7 rounded-full bg-yellow flex items-center justify-center font-bold text-lg hover:bg-yellow/80 text-black leading-none" onclick="this.previousElementSibling.stepUp()">+</button>
+              <span class="text-sm font-bold text-text leading-tight">Tomate</span>
+              <div class="flex items-center gap-2 bg-white rounded-full border-2 border-text p-1 shrink-0">
+                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
+                <input type="number" min="0" value="0" data-name="Prepizza(s) de Tomate" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0 text-text" readonly />
+                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
               </div>
             </label>
             <label class="flex justify-between items-center gap-3">
-              <span class="text-sm font-medium leading-tight">Cebolla (Fugazza)</span>
-              <div class="flex items-center gap-2 bg-white rounded-full border border-black/10 p-1 shrink-0">
-                <button type="button" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center font-bold text-lg hover:bg-gray-200 text-black leading-none" onclick="this.nextElementSibling.stepDown()">-</button>
-                <input type="number" min="0" value="0" data-name="Prepizza(s) de Cebolla" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0" readonly />
-                <button type="button" class="w-7 h-7 rounded-full bg-yellow flex items-center justify-center font-bold text-lg hover:bg-yellow/80 text-black leading-none" onclick="this.previousElementSibling.stepUp()">+</button>
+              <span class="text-sm font-bold text-text leading-tight">Cebolla (Fugazza)</span>
+              <div class="flex items-center gap-2 bg-white rounded-full border-2 border-text p-1 shrink-0">
+                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
+                <input type="number" min="0" value="0" data-name="Prepizza(s) de Cebolla" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0 text-text" readonly />
+                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
               </div>
             </label>
             <label class="flex justify-between items-center gap-3">
-              <span class="text-sm font-medium leading-tight">Mixta</span>
-              <div class="flex items-center gap-2 bg-white rounded-full border border-black/10 p-1 shrink-0">
-                <button type="button" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center font-bold text-lg hover:bg-gray-200 text-black leading-none" onclick="this.nextElementSibling.stepDown()">-</button>
-                <input type="number" min="0" value="0" data-name="Prepizza(s) Mixta(s)" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0" readonly />
-                <button type="button" class="w-7 h-7 rounded-full bg-yellow flex items-center justify-center font-bold text-lg hover:bg-yellow/80 text-black leading-none" onclick="this.previousElementSibling.stepUp()">+</button>
+              <span class="text-sm font-bold text-text leading-tight">Mixta</span>
+              <div class="flex items-center gap-2 bg-white rounded-full border-2 border-text p-1 shrink-0">
+                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
+                <input type="number" min="0" value="0" data-name="Prepizza(s) Mixta(s)" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0 text-text" readonly />
+                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
               </div>
             </label>
           </div>
         </div>
 
         <!-- Pizzetas -->
-        <div id="pizzetas-container" class="bg-white/60 p-4 rounded-xl border border-black/10 shadow-sm">
-          <div class="flex justify-between items-baseline border-b border-black/10 pb-2 mb-3">
-            <h3 class="font-bold text-lg text-accent">Pizzetas</h3>
-            <span class="text-xs font-normal text-muted">(En unidades. Mín. 12)</span>
+        <div id="pizzetas-container" class="bg-purple/20 p-5 rounded-2xl border-2 border-purple border-dashed">
+          <div class="flex justify-between items-baseline mb-4">
+            <h3 class="font-bold text-xl font-display text-text">Pizzetas</h3>
+            <span class="text-xs font-bold text-muted">(Mín. 12 uds)</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
             <label class="flex justify-between items-center gap-3">
-              <span class="text-sm font-medium leading-tight">Cebolla</span>
-              <div class="flex items-center gap-2 bg-white rounded-full border border-black/10 p-1 shrink-0">
-                <button type="button" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center font-bold text-lg hover:bg-gray-200 text-black leading-none" onclick="this.nextElementSibling.stepDown()">-</button>
-                <input type="number" min="0" step="6" value="0" data-name="Pizzetas Cebolla" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0" readonly />
-                <button type="button" class="w-7 h-7 rounded-full bg-yellow flex items-center justify-center font-bold text-lg hover:bg-yellow/80 text-black leading-none" onclick="this.previousElementSibling.stepUp()">+</button>
+              <span class="text-sm font-bold text-text leading-tight">Cebolla</span>
+              <div class="flex items-center gap-2 bg-white rounded-full border-2 border-text p-1 shrink-0">
+                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
+                <input type="number" min="0" step="6" value="0" data-name="Pizzetas Cebolla" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0 text-text" readonly />
+                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
               </div>
             </label>
             <label class="flex justify-between items-center gap-3">
-              <span class="text-sm font-medium leading-tight">Tomate</span>
-              <div class="flex items-center gap-2 bg-white rounded-full border border-black/10 p-1 shrink-0">
-                <button type="button" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center font-bold text-lg hover:bg-gray-200 text-black leading-none" onclick="this.nextElementSibling.stepDown()">-</button>
-                <input type="number" min="0" step="6" value="0" data-name="Pizzetas Tomate" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0" readonly />
-                <button type="button" class="w-7 h-7 rounded-full bg-yellow flex items-center justify-center font-bold text-lg hover:bg-yellow/80 text-black leading-none" onclick="this.previousElementSibling.stepUp()">+</button>
+              <span class="text-sm font-bold text-text leading-tight">Tomate</span>
+              <div class="flex items-center gap-2 bg-white rounded-full border-2 border-text p-1 shrink-0">
+                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
+                <input type="number" min="0" step="6" value="0" data-name="Pizzetas Tomate" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0 text-text" readonly />
+                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
               </div>
             </label>
           </div>
@@ -129,42 +124,42 @@ const {
         </div>
 
         <!-- Empanadas -->
-        <div id="empanadas-container" class="bg-white/60 p-4 rounded-xl border border-black/10 shadow-sm">
-          <div class="flex justify-between items-baseline border-b border-black/10 pb-2 mb-3">
-            <h3 class="font-bold text-lg text-[#F3620E]">Empanadas</h3>
-            <span class="text-xs font-normal text-muted">(En unidades. Mín. 12)</span>
+        <div id="empanadas-container" class="bg-accent/20 p-5 rounded-2xl border-2 border-accent border-dashed">
+          <div class="flex justify-between items-baseline mb-4">
+            <h3 class="font-bold text-xl font-display text-text">Empanadas</h3>
+            <span class="text-xs font-bold text-muted">(Mín. 12 uds)</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
             <label class="flex justify-between items-center gap-3">
-              <span class="text-sm font-medium leading-tight">Muzzarella y Jamón</span>
-              <div class="flex items-center gap-2 bg-white rounded-full border border-black/10 p-1 shrink-0">
-                <button type="button" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center font-bold text-lg hover:bg-gray-200 text-black leading-none" onclick="this.nextElementSibling.stepDown()">-</button>
-                <input type="number" min="0" step="6" value="0" data-name="Empanadas Muzzarella y Jamón" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0" readonly />
-                <button type="button" class="w-7 h-7 rounded-full bg-yellow flex items-center justify-center font-bold text-lg hover:bg-yellow/80 text-black leading-none" onclick="this.previousElementSibling.stepUp()">+</button>
+              <span class="text-sm font-bold text-text leading-tight">Muzzarella y Jamón</span>
+              <div class="flex items-center gap-2 bg-white rounded-full border-2 border-text p-1 shrink-0">
+                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
+                <input type="number" min="0" step="6" value="0" data-name="Empanadas Muzzarella y Jamón" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0 text-text" readonly />
+                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
               </div>
             </label>
             <label class="flex justify-between items-center gap-3">
-              <span class="text-sm font-medium leading-tight">Muzzarella y Verdura</span>
-              <div class="flex items-center gap-2 bg-white rounded-full border border-black/10 p-1 shrink-0">
-                <button type="button" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center font-bold text-lg hover:bg-gray-200 text-black leading-none" onclick="this.nextElementSibling.stepDown()">-</button>
-                <input type="number" min="0" step="6" value="0" data-name="Empanadas Verdura" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0" readonly />
-                <button type="button" class="w-7 h-7 rounded-full bg-yellow flex items-center justify-center font-bold text-lg hover:bg-yellow/80 text-black leading-none" onclick="this.previousElementSibling.stepUp()">+</button>
+              <span class="text-sm font-bold text-text leading-tight">Muzzarella y Verdura</span>
+              <div class="flex items-center gap-2 bg-white rounded-full border-2 border-text p-1 shrink-0">
+                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
+                <input type="number" min="0" step="6" value="0" data-name="Empanadas Verdura" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0 text-text" readonly />
+                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
               </div>
             </label>
             <label class="flex justify-between items-center gap-3">
-              <span class="text-sm font-medium leading-tight">Muzzarella y Cebolla</span>
-              <div class="flex items-center gap-2 bg-white rounded-full border border-black/10 p-1 shrink-0">
-                <button type="button" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center font-bold text-lg hover:bg-gray-200 text-black leading-none" onclick="this.nextElementSibling.stepDown()">-</button>
-                <input type="number" min="0" step="6" value="0" data-name="Empanadas Cebolla y Queso" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0" readonly />
-                <button type="button" class="w-7 h-7 rounded-full bg-yellow flex items-center justify-center font-bold text-lg hover:bg-yellow/80 text-black leading-none" onclick="this.previousElementSibling.stepUp()">+</button>
+              <span class="text-sm font-bold text-text leading-tight">Muzzarella y Cebolla</span>
+              <div class="flex items-center gap-2 bg-white rounded-full border-2 border-text p-1 shrink-0">
+                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
+                <input type="number" min="0" step="6" value="0" data-name="Empanadas Cebolla y Queso" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0 text-text" readonly />
+                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
               </div>
             </label>
             <label class="flex justify-between items-center gap-3">
-              <span class="text-sm font-medium leading-tight">Caprese</span>
-              <div class="flex items-center gap-2 bg-white rounded-full border border-black/10 p-1 shrink-0">
-                <button type="button" class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center font-bold text-lg hover:bg-gray-200 text-black leading-none" onclick="this.nextElementSibling.stepDown()">-</button>
-                <input type="number" min="0" step="6" value="0" data-name="Empanadas Caprese" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0" readonly />
-                <button type="button" class="w-7 h-7 rounded-full bg-yellow flex items-center justify-center font-bold text-lg hover:bg-yellow/80 text-black leading-none" onclick="this.previousElementSibling.stepUp()">+</button>
+              <span class="text-sm font-bold text-text leading-tight">Caprese</span>
+              <div class="flex items-center gap-2 bg-white rounded-full border-2 border-text p-1 shrink-0">
+                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
+                <input type="number" min="0" step="6" value="0" data-name="Empanadas Caprese" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0 text-text" readonly />
+                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
               </div>
             </label>
           </div>
@@ -172,50 +167,50 @@ const {
         </div>
 
         <!-- Entrega -->
-        <div class="bg-white/60 p-4 rounded-xl border border-black/10 shadow-sm">
-          <label class="block text-sm font-bold mb-2">Entrega</label>
-          <div class="flex flex-wrap gap-4 items-center">
-            <label class="inline-flex items-center gap-2 cursor-pointer">
-              <input type="radio" name="entrega" value="Retiro por local" class="accent-primary w-4 h-4" checked />
-              <span class="font-medium">Retiro por local</span>
+        <div class="bg-yellow/20 p-5 rounded-2xl border-2 border-yellow border-dashed">
+          <label class="block text-lg font-display font-bold text-text mb-3">Entrega</label>
+          <div class="flex flex-wrap gap-6 items-center">
+            <label class="inline-flex items-center gap-2 cursor-pointer font-bold text-text">
+              <input type="radio" name="entrega" value="Retiro por local" class="accent-text w-5 h-5" checked />
+              <span>Retiro por local</span>
             </label>
-            <label class="inline-flex items-center gap-2 cursor-pointer">
-              <input type="radio" name="entrega" value="Envío (consultar costo)" class="accent-primary w-4 h-4" />
-              <span class="font-medium">Envío (consultar costo)</span>
+            <label class="inline-flex items-center gap-2 cursor-pointer font-bold text-text">
+              <input type="radio" name="entrega" value="Envío (consultar costo)" class="accent-text w-5 h-5" />
+              <span>Envío (consultar)</span>
             </label>
           </div>
         </div>
 
-        <p data-err-for="productos" class="mt-1 text-sm text-[#b00020] hidden font-medium">Por favor agregá al menos 1 producto a tu pedido.</p>
+        <p data-err-for="productos" class="mt-1 text-sm text-[#b00020] hidden font-bold">Por favor agregá al menos 1 producto a tu pedido.</p>
         <!-- Campo oculto para enviar todo el detalle junto en Web3Forms -->
         <input type="hidden" name="Detalle_de_Pedido" id="detalle_pedido_hidden" />
       </div>
 
       <!-- Mensaje -->
       <div>
-        <label for="mensaje" class="block text-sm font-medium mb-1">Mensaje</label>
-        <textarea id="mensaje" name="message" rows="4" placeholder="Ej: Para el viernes por la noche, si puede ser 2 mixtas."
-          class="w-full rounded-xl border border-black/10 px-3 py-2 outline-none focus:ring-2 focus:ring-primary/30"></textarea>
+        <label for="mensaje" class="block text-lg font-display font-bold text-text mb-1">Mensaje Opcional</label>
+        <textarea id="mensaje" name="message" rows="3" placeholder="Ej: Para el viernes por la noche."
+          class="w-full rounded-2xl border-2 border-text px-4 py-3 outline-none focus:ring-2 focus:ring-accent bg-bg font-medium text-text"></textarea>
       </div>
 
       <!-- Estado -->
       <div class="text-sm">
-        <span id="formState" class="text-muted" aria-live="polite"></span>
+        <span id="formState" class="text-muted font-bold" aria-live="polite"></span>
       </div>
 
       <!-- Acciones -->
-      <div class="flex flex-col sm:flex-row items-center gap-3 mt-4">
+      <div class="flex flex-col sm:flex-row items-center gap-4 mt-6">
         <button
           id="whatsappLinkBtn"
           type="button"
-          class="btn flex-1 w-full text-center !bg-[#25D366] hover:!bg-[#128C7E] !text-white border-2 border-black !shadow-[4px_4px_0_rgba(17,17,17,1)] transition-colors"
+          class="btn flex-1 w-full text-center bg-[#25D366] text-text"
         >
           Enviar por WhatsApp
         </button>
         <button
           id="submitBtn"
           type="submit"
-          class="btn flex-1 w-full text-center !bg-white !text-black border-2 border-black !shadow-[4px_4px_0_rgba(17,17,17,1)] hover:!bg-gray-50 transition-colors"
+          class="btn flex-1 w-full text-center bg-white text-text"
         >Enviar por email</button>
       </div>
     </form>
@@ -353,7 +348,7 @@ const {
       const mensaje = /** @type {HTMLTextAreaElement} */(document.getElementById('mensaje')).value.trim();
       const entrega = document.querySelector('input[name="entrega"]:checked')?.value || 'Retiro por local';
       
-      let text = `¡Hola Casero SP! Soy ${nombre}. Quería hacer el siguiente pedido:\n\n*Detalle del pedido:*\n${order.text}\n`;
+      let text = `¡Hola Cocina de Sol! Soy ${nombre}. Quería hacer el siguiente pedido:\n\n*Detalle del pedido:*\n${order.text}\n`;
       text += `\n*Entrega:* ${entrega}`;
       if (tel) text += `\n*Mi Teléfono:* ${tel}`;
       if (mensaje) text += `\n\n*Mensaje adicional:* ${mensaje}`;
