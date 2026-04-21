@@ -111,7 +111,7 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 z-[2] bg-gradient-to-t from-bg to-transparent" />
 
       <div className="container relative z-[3] py-16 md:py-24 text-center">
-        <h2 className="font-display text-text text-5xl md:text-7xl drop-shadow-[4px_4px_0_rgba(230,57,70,1)] -rotate-1 inline-block mb-6">
+        <h2 className="font-display text-text text-5xl md:text-7xl drop-shadow-[2px_2px_0_rgba(230,57,70,1)] -rotate-1 inline-block mb-6">
           {title}
         </h2>
         <br />
