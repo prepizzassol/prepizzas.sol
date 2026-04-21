@@ -11,7 +11,7 @@ const {
   <div class="container relative z-[3] flex flex-col items-center gap-10">
     <!-- Texto -->
     <div class="flex flex-col gap-4 text-center max-w-2xl md:text-lg">
-      <h2 class="font-display text-text text-5xl md:text-6xl font-bold">{title}</h2>
+      <h2 class="font-display text-text text-4xl md:text-6xl font-bold">{title}</h2>
       <p class="text-muted font-bold text-xl">{copy}</p>
       <div class="bg-yellow scrapbook-border scrapbook-shadow inline-block p-4 mt-2">
         <ul class="text-sm md:text-base text-text font-medium list-disc space-y-1 text-left inline-block w-fit self-center px-4">
@@ -24,7 +24,7 @@ const {
     <!-- Formulario -->
     <form
       id="pedidoForm"
-      class="bg-white rounded-3xl scrapbook-shadow scrapbook-border p-6 md:p-10 space-y-6 w-full max-w-3xl"
+      class="bg-white rounded-3xl scrapbook-shadow scrapbook-border p-4 sm:p-6 md:p-10 space-y-6 w-full max-w-3xl"
       method="POST"
       action="https://api.web3forms.com/submit"
       novalidate
@@ -72,25 +72,25 @@ const {
             <label class="flex justify-between items-center gap-3">
               <span class="text-sm font-bold text-text leading-tight">Tomate</span>
               <div class="flex items-center gap-2 bg-white rounded-full border-2 border-text p-1 shrink-0">
-                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
+                <button type="button" class="w-9 h-9 md:w-8 md:h-8 rounded-full bg-bg flex items-center justify-center font-bold text-xl md:text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
                 <input type="number" min="0" value="0" data-name="Prepizza(s) de Tomate" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0 text-text" readonly />
-                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
+                <button type="button" class="w-9 h-9 md:w-8 md:h-8 rounded-full bg-bg flex items-center justify-center font-bold text-xl md:text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
               </div>
             </label>
             <label class="flex justify-between items-center gap-3">
               <span class="text-sm font-bold text-text leading-tight">Cebolla (Fugazza)</span>
               <div class="flex items-center gap-2 bg-white rounded-full border-2 border-text p-1 shrink-0">
-                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
+                <button type="button" class="w-9 h-9 md:w-8 md:h-8 rounded-full bg-bg flex items-center justify-center font-bold text-xl md:text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
                 <input type="number" min="0" value="0" data-name="Prepizza(s) de Cebolla" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0 text-text" readonly />
-                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
+                <button type="button" class="w-9 h-9 md:w-8 md:h-8 rounded-full bg-bg flex items-center justify-center font-bold text-xl md:text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
               </div>
             </label>
             <label class="flex justify-between items-center gap-3">
               <span class="text-sm font-bold text-text leading-tight">Mixta</span>
               <div class="flex items-center gap-2 bg-white rounded-full border-2 border-text p-1 shrink-0">
-                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
+                <button type="button" class="w-9 h-9 md:w-8 md:h-8 rounded-full bg-bg flex items-center justify-center font-bold text-xl md:text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
                 <input type="number" min="0" value="0" data-name="Prepizza(s) Mixta(s)" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0 text-text" readonly />
-                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
+                <button type="button" class="w-9 h-9 md:w-8 md:h-8 rounded-full bg-bg flex items-center justify-center font-bold text-xl md:text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
               </div>
             </label>
           </div>
@@ -106,17 +106,17 @@ const {
             <label class="flex justify-between items-center gap-3">
               <span class="text-sm font-bold text-text leading-tight">Cebolla</span>
               <div class="flex items-center gap-2 bg-white rounded-full border-2 border-text p-1 shrink-0">
-                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
+                <button type="button" class="w-9 h-9 md:w-8 md:h-8 rounded-full bg-bg flex items-center justify-center font-bold text-xl md:text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
                 <input type="number" min="0" step="6" value="0" data-name="Pizzetas Cebolla" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0 text-text" readonly />
-                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
+                <button type="button" class="w-9 h-9 md:w-8 md:h-8 rounded-full bg-bg flex items-center justify-center font-bold text-xl md:text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
               </div>
             </label>
             <label class="flex justify-between items-center gap-3">
               <span class="text-sm font-bold text-text leading-tight">Tomate</span>
               <div class="flex items-center gap-2 bg-white rounded-full border-2 border-text p-1 shrink-0">
-                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
+                <button type="button" class="w-9 h-9 md:w-8 md:h-8 rounded-full bg-bg flex items-center justify-center font-bold text-xl md:text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
                 <input type="number" min="0" step="6" value="0" data-name="Pizzetas Tomate" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0 text-text" readonly />
-                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
+                <button type="button" class="w-9 h-9 md:w-8 md:h-8 rounded-full bg-bg flex items-center justify-center font-bold text-xl md:text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
               </div>
             </label>
           </div>
@@ -133,33 +133,33 @@ const {
             <label class="flex justify-between items-center gap-3">
               <span class="text-sm font-bold text-text leading-tight">Muzzarella y Jamón</span>
               <div class="flex items-center gap-2 bg-white rounded-full border-2 border-text p-1 shrink-0">
-                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
+                <button type="button" class="w-9 h-9 md:w-8 md:h-8 rounded-full bg-bg flex items-center justify-center font-bold text-xl md:text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
                 <input type="number" min="0" step="6" value="0" data-name="Empanadas Muzzarella y Jamón" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0 text-text" readonly />
-                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
+                <button type="button" class="w-9 h-9 md:w-8 md:h-8 rounded-full bg-bg flex items-center justify-center font-bold text-xl md:text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
               </div>
             </label>
             <label class="flex justify-between items-center gap-3">
               <span class="text-sm font-bold text-text leading-tight">Muzzarella y Verdura</span>
               <div class="flex items-center gap-2 bg-white rounded-full border-2 border-text p-1 shrink-0">
-                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
+                <button type="button" class="w-9 h-9 md:w-8 md:h-8 rounded-full bg-bg flex items-center justify-center font-bold text-xl md:text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
                 <input type="number" min="0" step="6" value="0" data-name="Empanadas Verdura" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0 text-text" readonly />
-                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
+                <button type="button" class="w-9 h-9 md:w-8 md:h-8 rounded-full bg-bg flex items-center justify-center font-bold text-xl md:text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
               </div>
             </label>
             <label class="flex justify-between items-center gap-3">
               <span class="text-sm font-bold text-text leading-tight">Muzzarella y Cebolla</span>
               <div class="flex items-center gap-2 bg-white rounded-full border-2 border-text p-1 shrink-0">
-                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
+                <button type="button" class="w-9 h-9 md:w-8 md:h-8 rounded-full bg-bg flex items-center justify-center font-bold text-xl md:text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
                 <input type="number" min="0" step="6" value="0" data-name="Empanadas Cebolla y Queso" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0 text-text" readonly />
-                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
+                <button type="button" class="w-9 h-9 md:w-8 md:h-8 rounded-full bg-bg flex items-center justify-center font-bold text-xl md:text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
               </div>
             </label>
             <label class="flex justify-between items-center gap-3">
               <span class="text-sm font-bold text-text leading-tight">Caprese</span>
               <div class="flex items-center gap-2 bg-white rounded-full border-2 border-text p-1 shrink-0">
-                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
+                <button type="button" class="w-9 h-9 md:w-8 md:h-8 rounded-full bg-bg flex items-center justify-center font-bold text-xl md:text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.nextElementSibling.stepDown()">-</button>
                 <input type="number" min="0" step="6" value="0" data-name="Empanadas Caprese" class="producto-qty w-8 text-center bg-transparent font-bold outline-none text-sm p-0 text-text" readonly />
-                <button type="button" class="w-7 h-7 rounded-full bg-bg flex items-center justify-center font-bold text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
+                <button type="button" class="w-9 h-9 md:w-8 md:h-8 rounded-full bg-bg flex items-center justify-center font-bold text-xl md:text-lg hover:bg-yellow text-text leading-none transition-colors" onclick="this.previousElementSibling.stepUp()">+</button>
               </div>
             </label>
           </div>

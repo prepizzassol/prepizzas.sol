@@ -87,7 +87,7 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
     const { x, y } = touchDelta.current;
     const dt = Date.now() - touchStart.current.t;
     const absX = Math.abs(x), absY = Math.abs(y);
-    if (dt <= 600 && absX > 50 && absY < 60) { x < 0 ? next() : prev(); }
+    if (dt <= 600 && absX > 40 && absY < 120) { x < 0 ? next() : prev(); }
   };
 
   // Prefetch muy liviano de next/prev al cambiar idx (mejora UX, no afecta PSI)
@@ -124,7 +124,7 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
         </p>
 
         {/* Grid: miniaturas estilo polaroid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
           {images.map((img, i) => {
             const base = makeBase(img.src);
             const sets = buildSets(base);
@@ -197,7 +197,7 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
             {/* Botón Cerrar (X) */}
             <button
               onClick={close}
-              className="absolute -top-3 right-0 md:-right-4 md:-top-4 w-12 h-12 bg-primary text-white font-bold text-xl scrapbook-border scrapbook-shadow transition-transform hover:scale-110 grid place-items-center focus:outline-none z-10"
+              className="fixed top-4 right-4 md:absolute md:-top-4 md:-right-4 w-12 h-12 bg-primary text-white font-bold text-xl scrapbook-border scrapbook-shadow transition-transform hover:scale-110 grid place-items-center focus:outline-none z-[70]"
               aria-label="Cerrar"
             >
               ✕
@@ -206,21 +206,21 @@ export default function Gallery({ images = IMAGES, title = "Mirá las delicias d
             {/* Prev / Next */}
             <button
               onClick={prev}
-              className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-yellow text-text text-2xl font-bold scrapbook-border scrapbook-shadow transition-transform hover:scale-110 grid place-items-center focus:outline-none z-10"
+              className="hidden md:grid absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-yellow text-text text-2xl font-bold scrapbook-border scrapbook-shadow transition-transform hover:scale-110 place-items-center focus:outline-none z-10"
               aria-label="Anterior"
             >
               ‹
             </button>
             <button
               onClick={next}
-              className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-yellow text-text text-2xl font-bold scrapbook-border scrapbook-shadow transition-transform hover:scale-110 grid place-items-center focus:outline-none z-10"
+              className="hidden md:grid absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-yellow text-text text-2xl font-bold scrapbook-border scrapbook-shadow transition-transform hover:scale-110 place-items-center focus:outline-none z-10"
               aria-label="Siguiente"
             >
               ›
             </button>
 
             {/* Indicador */}
-            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 px-4 py-1 bg-white scrapbook-border scrapbook-shadow font-bold text-text z-10">
+            <div className="fixed bottom-6 left-1/2 -translate-x-1/2 md:absolute md:-bottom-8 md:bottom-auto px-4 py-1 bg-white scrapbook-border scrapbook-shadow font-bold text-text z-[70]">
               {idx + 1} / {images.length}
             </div>
           </div>
